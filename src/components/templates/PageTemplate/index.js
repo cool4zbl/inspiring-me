@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { size } from 'styled-theme'
+import { palette, size, font } from 'styled-theme'
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   padding-top: 3.75rem;
   min-height: 100vh;
   box-sizing: border-box;
+  font-family: ${font('apple')};
   @media screen and (max-width: 640px) {
     padding-top: 3.25rem;
   }
@@ -23,17 +24,22 @@ const Header = styled.header`
 `
 
 const Content = styled.section`
+  background-color: ${palette('danger', 3)};
   width: 100%;
+  min-height: 70vh;
   box-sizing: border-box;
-  margin: 2rem auto;
+  margin: 1rem auto;
   max-width: ${size('maxWidth')};
+  @media screen and (max-width: 640px) {
+    padding: .25rem;
+  }
 `
 
 const Footer = styled.footer`
   margin-top: auto;
 `
 
-const PageTemplate = ({ header, hero, children, footer, ...props }) => {
+const PageTemplate = ({ header, children, footer, ...props }) => {
   return (
     <Wrapper {...props}>
       <Header>{header}</Header>

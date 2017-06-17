@@ -1,19 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { font, palette } from 'styled-theme'
+import { Paragraph, Link } from 'components'
 
 const Wrapper = styled.div`
-  font-family: ${font('secondary')};
-  color: ${palette('grayscale', 2)};
-  padding: 2rem;
+  background-color: ${palette('white', 2)};
+  padding: 1rem;
+`
+
+const Credits = styled(Paragraph)` 
+  vertical-align: center;
   text-align: center;
+  margin: 0;
+  color: ${palette('grayscale', 0)};
 `
 
 const Footer = (props) => {
   return (
     <Wrapper {...props}>
-      I am the Footer
+      <Credits>
+        Made with ❤️   by  <Link href='http://zhangbinliu.me'>ZBL</Link>
+      </Credits>
     </Wrapper>
   )
 }

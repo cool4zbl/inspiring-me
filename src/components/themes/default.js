@@ -24,10 +24,12 @@ theme.palette = {
 
 theme.reversePalette = reversePalette(theme.palette)
 
+// 需要加入中文字体
 theme.fonts = {
   primary: 'Helvetica Neue, Helvetica, Roboto, sans-serif',
   pre: 'Consolas, Liberation Mono, Menlo, Courier, monospace',
   quote: 'Georgia, serif',
+  apple: 'PingFang SC, Helvetica Neue, Helvetica, Roboto, sans-serif',
 }
 
 theme.sizes = {
