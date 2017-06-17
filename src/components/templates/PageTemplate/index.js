@@ -24,7 +24,7 @@ const Header = styled.header`
 `
 
 const Content = styled.section`
-  background-color: ${palette('danger', 3)};
+  background-color: ${palette('white', 1)};
   width: 100%;
   min-height: 70vh;
   box-sizing: border-box;

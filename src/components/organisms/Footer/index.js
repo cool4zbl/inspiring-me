@@ -7,6 +7,9 @@ import { Paragraph, Link } from 'components'
 const Wrapper = styled.div`
   background-color: ${palette('white', 2)};
   padding: 1rem;
+  // @media screen and (max-width: 640px) {
+  //   padding: 0.5rem;
+  // }
 `
 
 const Credits = styled(Paragraph)` 
