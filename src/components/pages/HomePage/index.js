@@ -10,7 +10,9 @@ const StyledHeading = styled(Heading)`
 const HomePage = () => {
   return (
     <PageTemplate header={<Header />} footer={<Footer />}>
+
       <StyledHeading>WE ARE TOGETHER 100 DAYS! 😆</StyledHeading>
+
     </PageTemplate>
   )
 }
