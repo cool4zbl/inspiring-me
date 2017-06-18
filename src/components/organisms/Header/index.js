@@ -2,7 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { font, palette, size } from 'styled-theme'
-import { Block, Heading, SingleDatePickerWrapper } from 'components'
+import { 
+  Block, Heading, 
+  DayPickerWrapper
+} from 'components'
 
 const Wrapper = styled(Block)`
   background-color: ${palette('danger', 1)};
@@ -11,9 +14,9 @@ const Wrapper = styled(Block)`
   justify-content: center;
   padding: 1rem;
   text-align: center;
-  // @media screen and (max-width: 640px) {
-  //   padding: 0.5rem;
-  // }
+  @media screen and (max-width: 640px) {
+    padding: 0.8rem;
+  }
 `
 
 const InnerWrapper = styled.div`
@@ -26,14 +29,17 @@ const InnerWrapper = styled.div`
   }
 `
 
-const Span = styled.span``
+const Span = styled.span`
+  flex: 1;
+`
 
 const Header = (props) => {
   return (
     <Wrapper {...props}>
       <InnerWrapper>
         <Span>日.常</Span>
-        <SingleDatePickerWrapper />
+        <Span>Day</Span>
+        <Span>Icon</Span>
       </InnerWrapper>
     </Wrapper>
   )
