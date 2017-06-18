@@ -11,26 +11,18 @@ const constants = {
   DISPLAY_FORMAT: 'L',
   ISO_FORMAT: 'YYYY-MM-DD',
   ISO_MONTH_FORMAT: 'YYYY-MM',
-
   START_DATE: 'startDate',
   END_DATE: 'endDate',
-
   HORIZONTAL_ORIENTATION: 'horizontal',
   VERTICAL_ORIENTATION: 'vertical',
   VERTICAL_SCROLLABLE: 'verticalScrollable',
-
   ANCHOR_LEFT: 'left',
   ANCHOR_RIGHT: 'right',
-
   DAY_SIZE: 50,
   BLOCKED_MODIFIER: 'blocked'
 }
 
-import {
-  HORIZONTAL_ORIENTATION,
-  ANCHOR_LEFT,
-  DAY_SIZE
-} from 'constants'
+import { HORIZONTAL_ORIENTATION, ANCHOR_LEFT, DAY_SIZE } from 'constants'
 
 function isSameDay (a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
@@ -40,10 +32,9 @@ function isSameDay (a, b) {
     a.year() == b.year()
 }
 
-// FIXME isAfterDay 2017.03.12
+// a 是不是在 b 那天之前的日期, 不包括b
 function isBeforeDay (a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
-
   const aYear = a.year()
   const aMonth = a.month()
 
@@ -58,14 +49,28 @@ function isBeforeDay (a, b) {
   return aYear < bYear
 }
 
+// TODO: isSameOrAfter, isSameOrBefore func name
+
+// a 是不是在 b 那天之后的日期, 包括b
 function isInclusivelyAfterDay (a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
   return !isBeforeDay(a, b)
 }
 
+// a 是不是在 b 那天之后的日期, 不包括b
 function isAfterDay (a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
   return !isBeforeDay(a, b) && !isSameDay(a, b)
+}
+
+// a 是不是在 b 那天之前的日期, 包括b
+function isInclusivelyBeforeDay (a, b) {
+  return !isAfterDay(a, b)
+}
+// a in day[b, c]
+function isInRange (a, b, c) {
+  return isInclusivelyAfterDay(a, b)
+    && isInclusivelyBeforeDay(a, c)
 }
 
 const propTypes = {
@@ -75,7 +80,6 @@ const propTypes = {
 }
 
 const defaultProps = {
-  // example props for the demo
   autoFocus: false,
   initialDate: moment(),
 
@@ -112,10 +116,12 @@ const defaultProps = {
   renderDay: null,
   enableOutsideDays: true,
   isDayBlocked: () => false,
-  isOutsideRange: day => { return !(isBeforeDay(day, moment()) || isSameDay(day, moment())) },
+  isOutsideRange: day => { 
+    return !isInRange(day, moment('2017-03-12'), moment()) 
+    // return !moment(day).isSameOrAfter('2017-03-12', 'day')
+  },
   isDayHighlighted: () => {},
 
-  // displayFormat: () => moment.localeData().longDateFormat('L'),
   displayFormat: 'MMM D Y',
   monthFormat: 'MMMM YYYY'
 }
