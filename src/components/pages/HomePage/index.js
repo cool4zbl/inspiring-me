@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import moment from 'moment'
 
 import { PageTemplate, Header, Footer, Heading,
   SingleDatePickerWrapper
@@ -9,11 +10,11 @@ const StyledHeading = styled(Heading)`
   text-align: center;
 `
 
-const DayPickerWrapper = ({ className, children }) => {
+const DayPickerWrapper = ({ className, children, ...props }) => {
   const Wrapper = styled.div``
   return (
     <Wrapper className={className}>
-      <SingleDatePickerWrapper />
+      <SingleDatePickerWrapper {...props}/>
     </Wrapper>
   )
 }
@@ -27,15 +28,29 @@ const StyledPicker = styled(DayPickerWrapper)`
   transform: translateX(-50%);
   text-align: center;
 `
+export default class HomePage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      date: moment()
+    }
+    this.handleDateChange = this.handleDateChange.bind(this)
+  }
 
-const HomePage = () => {
-  return (
-    <PageTemplate header={<Header />} footer={<Footer />}>
-      <StyledPicker />
-      <StyledHeading>WE ARE TOGETHER 100 DAYS! 😆</StyledHeading>
+  handleDateChange (pickDate) {
+    this.setState({
+      date: pickDate
+    })
+  }
 
-    </PageTemplate>
-  )
+  render() {
+    const { date } = this.state
+    return (
+      <PageTemplate header={<Header />} footer={<Footer />}>
+        <StyledPicker handleDateChange={this.handleDateChange}/>
+        <StyledHeading>TOGETHER {date.days()} DAYS! 😆</StyledHeading>
+
+      </PageTemplate>
+    )
+  }
 }
-
-export default HomePage

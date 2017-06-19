@@ -32,7 +32,6 @@ function isSameDay (a, b) {
     a.year() == b.year()
 }
 
-// a 是不是在 b 那天之前的日期, 不包括b
 function isBeforeDay (a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
   const aYear = a.year()
@@ -49,34 +48,32 @@ function isBeforeDay (a, b) {
   return aYear < bYear
 }
 
-// TODO: isSameOrAfter, isSameOrBefore func name
-
-// a 是不是在 b 那天之后的日期, 包括b
-function isInclusivelyAfterDay (a, b) {
+function isSameOrAfter (a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
   return !isBeforeDay(a, b)
 }
 
-// a 是不是在 b 那天之后的日期, 不包括b
 function isAfterDay (a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
   return !isBeforeDay(a, b) && !isSameDay(a, b)
 }
 
-// a 是不是在 b 那天之前的日期, 包括b
-function isInclusivelyBeforeDay (a, b) {
+function isSameOrBefore (a, b) {
   return !isAfterDay(a, b)
 }
-// a in day[b, c]
+
 function isInRange (a, b, c) {
-  return isInclusivelyAfterDay(a, b)
-    && isInclusivelyBeforeDay(a, c)
+  return isSameOrAfter(a, b)
+    && isSameOrBefore(a, c)
 }
 
 const propTypes = {
   // example props for the demo
   autoFocus: PropTypes.bool,
-  initialDate: momentPropTypes.momentObj
+  initialDate: momentPropTypes.momentObj,
+
+  handleDateChange: PropTypes.func
+
 }
 
 const defaultProps = {
@@ -112,13 +109,14 @@ const defaultProps = {
   onPrevMonthClick () {},
   onNextMonthClick () {},
 
+  handleDateChange () {},
+
   // day presentation and interaction related props
   renderDay: null,
   enableOutsideDays: true,
   isDayBlocked: () => false,
   isOutsideRange: day => { 
     return !isInRange(day, moment('2017-03-12'), moment()) 
-    // return !moment(day).isSameOrAfter('2017-03-12', 'day')
   },
   isDayHighlighted: () => {},
 
@@ -140,6 +138,7 @@ class SingleDatePickerWrapper extends React.Component {
 
   onDateChange (date) {
     this.setState({ date })
+    this.props.handleDateChange(date)
   }
 
   onFocusChange ({ focused }) {
@@ -153,7 +152,8 @@ class SingleDatePickerWrapper extends React.Component {
     // props on the SingleDatePicker itself and thus, have to be omitted.
     const props = omit(this.props, [
       'autoFocus',
-      'initialDate'
+      'initialDate',
+      'handleDateChange'
     ])
 
     return (
