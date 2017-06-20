@@ -28,6 +28,9 @@ const StyledPicker = styled(DayPickerWrapper)`
   transform: translateX(-50%);
   text-align: center;
 `
+
+const BEGIN_DATE = moment('2017-03-12')
+
 export default class HomePage extends React.Component {
   constructor(props) {
     super(props)
@@ -38,17 +41,35 @@ export default class HomePage extends React.Component {
   }
 
   handleDateChange (pickDate) {
+    if (!moment.isMoment(pickDate)) {
+      return
+    }
     this.setState({
       date: pickDate
     })
   }
+
+  computeTimeFromX (a, b) {
+    if (!moment.isMoment(a) || !moment.isMoment(b)) {
+      return
+    }
+    return a.from(b, true)
+  }
+
+  diff (b, a) {
+    if (!moment.isMoment(a) || !moment.isMoment(b)) {
+      return
+    }
+    return b.diff(a, 'days')
+  }
+
 
   render() {
     const { date } = this.state
     return (
       <PageTemplate header={<Header />} footer={<Footer />}>
         <StyledPicker handleDateChange={this.handleDateChange}/>
-        <StyledHeading>TOGETHER {date.days()} DAYS! 😆</StyledHeading>
+        <StyledHeading>TOGETHER { this.diff(date, BEGIN_DATE) } DAYS! 😆</StyledHeading>
 
       </PageTemplate>
     )
