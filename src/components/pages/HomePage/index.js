@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import moment from 'moment'
 
+import { font, palette, size } from 'styled-theme'
 import { PageTemplate, Header, Footer, Heading,
   SingleDatePickerWrapper
 } from 'components'
@@ -18,6 +19,7 @@ const DatePickerWrapper = styled.div`
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
+  background-color: ${palette('danger', 1)};
 `
 
 const BEGIN_DATE = moment('2017-03-12')
@@ -57,14 +59,12 @@ export default class HomePage extends React.Component {
 
   render() {
     const { date } = this.state
-        // <StyledPicker handleDateChange={this.handleDateChange}/>
     return (
       <PageTemplate header={<Header />} footer={<Footer />}>
       <DatePickerWrapper className={`DatePicker`}>
         <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>
       </DatePickerWrapper>
         <StyledHeading>TOGETHER { this.diff(date, BEGIN_DATE) } DAYS! 😆</StyledHeading>
-
       </PageTemplate>
     )
   }

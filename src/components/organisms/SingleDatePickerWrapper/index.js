@@ -6,6 +6,7 @@ import omit from 'lodash/omit'
 
 import { SingleDatePicker } from 'react-dates'
 import 'react-dates/lib/css/_datepicker.css'
+import './index.css'
 
 const constants = {
   DISPLAY_FORMAT: 'L',
