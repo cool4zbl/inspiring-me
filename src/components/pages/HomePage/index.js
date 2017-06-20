@@ -10,17 +10,8 @@ const StyledHeading = styled(Heading)`
   text-align: center;
 `
 
-const DayPickerWrapper = ({ className, children, ...props }) => {
-  const Wrapper = styled.div``
-  return (
-    <Wrapper className={className}>
-      <SingleDatePickerWrapper {...props}/>
-    </Wrapper>
-  )
-}
-
-// move DayPicker to the center header
-const StyledPicker = styled(DayPickerWrapper)`
+// move SDP to the center header
+const DatePickerWrapper = styled.div`
   z-index: 1012;
   position: absolute;
   top: .25rem;
@@ -66,9 +57,12 @@ export default class HomePage extends React.Component {
 
   render() {
     const { date } = this.state
+        // <StyledPicker handleDateChange={this.handleDateChange}/>
     return (
       <PageTemplate header={<Header />} footer={<Footer />}>
-        <StyledPicker handleDateChange={this.handleDateChange}/>
+      <DatePickerWrapper className={`DatePicker`}>
+        <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>
+      </DatePickerWrapper>
         <StyledHeading>TOGETHER { this.diff(date, BEGIN_DATE) } DAYS! 😆</StyledHeading>
 
       </PageTemplate>

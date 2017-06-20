@@ -115,8 +115,8 @@ const defaultProps = {
   renderDay: null,
   enableOutsideDays: true,
   isDayBlocked: () => false,
-  isOutsideRange: day => { 
-    return !isInRange(day, moment('2017-03-12'), moment()) 
+  isOutsideRange: day => {
+    return !isInRange(day, moment('2017-03-12'), moment())
   },
   isDayHighlighted: () => {},
 
