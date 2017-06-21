@@ -4,6 +4,7 @@
 
 - 整体颜色可以正能量一点，需要找到好一点的 colorset.
   - [Marvel](https://marvelapp.com/styleguide/design/color-scheme)
+  - [Ego Icon](http://ego-icons.com/)
 
 - 以后可以更换整体颜色 colorset?
 - 简单点的话，可以背景都是预设的纯色, 字体也是预设的中英文字体

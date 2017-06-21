@@ -12,8 +12,6 @@ const StyledHeading = styled(Heading)`
 `
 
 const Wrapper = styled(Block)`
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg') center / cover no-repeat;
-  height: 100%;
 `
 
 // Move SDP to the center header
@@ -70,7 +68,7 @@ export default class HomePage extends React.Component {
           <DatePickerWrapper className={`DatePicker`}>
             <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>
           </DatePickerWrapper>
-          <StyledHeading>TOGETHER { this.diff(date, BEGIN_DATE) } DAYS! 😆</StyledHeading>
+          <StyledHeading> { this.diff(date, BEGIN_DATE) } DAYS! 😆</StyledHeading>
         </Wrapper>
       </PageTemplate>
     )

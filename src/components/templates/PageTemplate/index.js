@@ -27,10 +27,18 @@ const Content = styled.section`
   width: 100%;
   min-height: 70vh;
   box-sizing: border-box;
+  padding: .25rem;
   margin: 1rem auto;
   max-width: ${size('maxWidth')};
+  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg');
+  background-positon: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+
   @media screen and (max-width: 640px) {
-    padding: .25rem;
+    margin: 0 auto;
+    padding: 0;
   }
 `
 
