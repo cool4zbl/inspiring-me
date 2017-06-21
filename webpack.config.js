@@ -29,8 +29,8 @@ const babel = () => () => ({
 const assets = () => () => ({
   module: {
     rules: [
-      { 
-        test: /\.css$/, 
+      {
+        test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
       { test: /\.(png|jpe?g|svg|woff2?|ttf|eot)$/, loader: 'url-loader?limit=8000' },

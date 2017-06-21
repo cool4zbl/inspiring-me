@@ -1,12 +1,14 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
+import { normalize } from 'polished'
 
 import { HomePage, SamplePage, NotFoundPage } from 'components'
 
 import theme from './themes/default'
 
 injectGlobal`
+  ${normalize()}
   body {
     margin: 0;
   }
