@@ -13,9 +13,10 @@ const Wrapper = styled(Block)`
   display: flex;
   justify-content: center;
   padding: 1rem;
+  height: 3.5vh;
   text-align: center;
   @media screen and (max-width: 640px) {
-    padding: 0.8rem;
+    // padding: 0.8rem;
   }
 `
 

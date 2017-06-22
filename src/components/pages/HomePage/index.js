@@ -59,11 +59,17 @@ export default class HomePage extends React.Component {
     return b.diff(a, 'days')
   }
 
+  getBgImgUrl () {
+    const URL = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg'
+    return URL
+  }
+
 
   render() {
     const { date } = this.state
     return (
-      <PageTemplate header={<Header />} footer={<Footer />}>
+      <PageTemplate header={<Header />} footer={<Footer />}
+      bgImgUrl={this.getBgImgUrl()}>
         <Wrapper>
           <DatePickerWrapper className={`DatePicker`}>
             <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>

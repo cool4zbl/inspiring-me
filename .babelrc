@@ -4,7 +4,7 @@
       "modules": false
     }],
     "react",
-    "stage-1"
+    "stage-3"
   ],
   "plugins": [
     "react-hot-loader/babel"
@@ -13,6 +13,7 @@
     "development": {
       "plugins": [
         "transform-es2015-modules-commonjs",
+        "polished",
         ["styled-components", {
           "minify": false
         }]
@@ -26,6 +27,7 @@
     "production": {
       "plugins": [
         "transform-react-remove-prop-types",
+        "polished",
         ["styled-components", {
           "displayName": false
         }]
