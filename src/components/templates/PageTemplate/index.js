@@ -21,21 +21,21 @@ const Header = styled.header`
   width: 100%;
   z-index: 999;
 `
-
-// FIXME: polish object rest speread
-const Content = styled.section`
+// FIXME: polished not support object rest speread
+const Content = styled.section.attrs({
+})`
   width: 100%;
   min-height: 70vh;
   box-sizing: border-box;
   padding: .25rem;
   margin: 1rem auto;
   max-width: ${size('maxWidth')};
-  // background-color: ${palette('white', 1)};
-  background-position: center center;
+  background-color: ${palette('white', 1)};
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg");
+  background-image: ${props => `url(${props.bgImgUrl})`};
 
   @media screen and (max-width: 640px) {
     margin: 0 auto;
@@ -51,7 +51,7 @@ const PageTemplate = ({ header, children, footer, ...props }) => {
   return (
     <Wrapper {...props}>
       <Header>{header}</Header>
-      <Content>{children}</Content>
+      <Content {...props}>{children}</Content>
       <Footer>{footer}</Footer>
     </Wrapper>
   )
