@@ -64,7 +64,6 @@ export default class HomePage extends React.Component {
     return URL
   }
 
-
   render() {
     const { date } = this.state
     return (
