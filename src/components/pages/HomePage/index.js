@@ -4,7 +4,7 @@ import moment from 'moment'
 import styled from 'styled-components'
 import { font, palette, size } from 'styled-theme'
 import { PageTemplate, Header, Footer, Heading,
-  SingleDatePickerWrapper, Block
+  SingleDatePickerWrapper, Block, Utils
 } from 'components'
 
 const StyledHeading = styled(Heading)`
@@ -31,7 +31,9 @@ export default class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      date: moment()
+      date: moment(),
+      bgImgUrl: '',
+      quote: ''
     }
     this.handleDateChange = this.handleDateChange.bind(this)
   }
@@ -64,16 +66,25 @@ export default class HomePage extends React.Component {
     return URL
   }
 
+  componentWillMount() {
+    const content = Utils.genRandomContent()
+    console.warn(`content ${content}`)
+    this.setState({
+      ...content
+    })
+  }
+
   render() {
-    const { date } = this.state
+    const { date, bgImgUrl, quote } = this.state
     return (
       <PageTemplate header={<Header />} footer={<Footer />}
-      bgImgUrl={this.getBgImgUrl()}>
+      bgImgUrl={bgImgUrl}>
         <Wrapper>
           <DatePickerWrapper className={`DatePicker`}>
             <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>
           </DatePickerWrapper>
           <StyledHeading> { this.diff(date, BEGIN_DATE) } DAYS! 😆</StyledHeading>
+          <StyledHeading> { quote } ! 🌝</StyledHeading>
         </Wrapper>
       </PageTemplate>
     )
