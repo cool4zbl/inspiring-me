@@ -68,7 +68,7 @@ export default class HomePage extends React.Component {
 
   componentWillMount() {
     const content = Utils.genRandomContent()
-    console.warn(`content ${content}`)
+    console.log('content', content)
     this.setState({
       ...content
     })
