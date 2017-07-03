@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { font, palette, size } from 'styled-theme'
-import { 
-  Block, Heading, 
+import {
+  Block, Heading,
   DayPickerWrapper
 } from 'components'
 
@@ -38,9 +38,9 @@ const Header = (props) => {
   return (
     <Wrapper {...props}>
       <InnerWrapper>
-        <Span>日.常</Span>
+        <Span>Daily</Span>
         <Span>Day</Span>
-        <Span>Icon</Span>
+        <Span>日.常</Span>
       </InnerWrapper>
     </Wrapper>
   )

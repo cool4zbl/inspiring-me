@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   font-family: ${font('apple')};
   @media screen and (max-width: 640px) {
-    padding: 3rem 0;
+    padding-top: 3rem;
   }
 `
 

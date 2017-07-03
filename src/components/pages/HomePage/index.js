@@ -4,14 +4,24 @@ import moment from 'moment'
 import styled from 'styled-components'
 import { font, palette, size } from 'styled-theme'
 import { PageTemplate, Header, Footer, Heading,
-  SingleDatePickerWrapper, Block, Utils
+  SingleDatePickerWrapper, Block, Utils,
+  DaysBadge
 } from 'components'
 
 const StyledHeading = styled(Heading)`
   text-align: center;
 `
-
+// todo: Hero component
 const Wrapper = styled(Block)`
+  display: flex;
+  flex-flow: column wrap;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+`
+
+const QuoteWrapper = styled.div`
+  flex: ${props => props.flex};
 `
 
 // Move SDP to the center header
@@ -24,6 +34,7 @@ const DatePickerWrapper = styled.div`
   text-align: center;
   background-color: ${palette('danger', 1)};
 `
+
 
 const BEGIN_DATE = moment('2017-03-12')
 
@@ -74,17 +85,26 @@ export default class HomePage extends React.Component {
     })
   }
 
+  diffDays () {
+    const { date } = this.state
+    const days = this.diff(date, BEGIN_DATE)
+    return days
+  }
+
   render() {
     const { date, bgImgUrl, quote } = this.state
     return (
       <PageTemplate header={<Header />} footer={<Footer />}
       bgImgUrl={bgImgUrl}>
+        <DatePickerWrapper className={`DatePicker`}>
+          <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>
+        </DatePickerWrapper>
         <Wrapper>
-          <DatePickerWrapper className={`DatePicker`}>
-            <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>
-          </DatePickerWrapper>
-          <StyledHeading> { this.diff(date, BEGIN_DATE) } DAYS! 😆</StyledHeading>
-          <StyledHeading> { quote } ! 🌝</StyledHeading>
+          <DaysBadge flex={3}
+            days={this.diffDays()}></DaysBadge>
+          <QuoteWrapper flex={2}>
+            <StyledHeading> { quote } ! 🌝</StyledHeading>
+          </QuoteWrapper>
         </Wrapper>
       </PageTemplate>
     )

@@ -10,6 +10,8 @@ import theme from './themes/default'
 injectGlobal`
   ${normalize()}
   body {
+    -webkit-font-smoothing: antialiased;
+    height: 100vh;
     margin: 0;
   }
 `
