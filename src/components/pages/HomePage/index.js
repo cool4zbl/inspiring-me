@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 
 import styled from 'styled-components'
+import { ifProp, prop } from 'styled-tools'
 import { font, palette, size } from 'styled-theme'
 import { PageTemplate, Header, Footer, Heading,
   SingleDatePickerWrapper, Block, Utils,
@@ -21,7 +22,7 @@ const Wrapper = styled(Block)`
 `
 
 const QuoteWrapper = styled.div`
-  flex: ${props => props.flex};
+  flex: ${prop('flex', 2)};
 `
 
 // Move SDP to the center header

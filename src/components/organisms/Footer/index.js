@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   padding: .8rem;
 `
 
-const Credits = styled(Paragraph)` 
+const Credits = styled(Paragraph)`
   vertical-align: center;
   text-align: center;
   margin: 0;

@@ -1,23 +1,39 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { font, palette, reverse } from 'styled-theme'
+import { ifProp, prop } from 'styled-tools'
+import { font, palette, size } from 'styled-theme'
+import {
+  Block
+} from 'components'
 
 const DaysWrapper = styled.div.attrs({
 })`
-  font-family: ${font('apple')};
-  color: ${palette('white', 0)};
+  max-width: max-content;
+  flex: ${prop('flex', 3)};
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+`
+const InnerWrapper = styled(Block)`
   display: flex;
   flex-flow: column wrap;
   text-align: center;
   justify-content: center;
   align-items: center;
-  border: 2px solid ${palette('white', 0)};
-  flex: ${ props => props.flex };
+  border: 4px solid ${palette('white', 0)};
+  padding: .2em;
 `
+
 const Span = styled.span`
   flex: 1;
-  max-width: 50%;
+  color: ${ifProp('reverse', palette('white', 2), palette('white', 0))};
+  background-color: ${ifProp('reverse', palette('grayscale', 3), 'transparent')};
+  font-size: ${ifProp('featured', '2.8em' , '1em')};
+  &:nth-child(3) {
+    font-weight: 600;
+  }
 `
 
 const INIT_COPY = 'Yeah, WE ARE TOGETHER TODAY '
@@ -26,10 +42,12 @@ const DaysBadge = ({ children, ...props }) => {
 
   return (
     <DaysWrapper {...props}>
-      <Span>{ props.days }</Span>
-      <Span>DAYS</Span>
-      <Span>TOGETHER</Span>
-      {children}
+      <InnerWrapper>
+        <Span featured>{ props.days }</Span>
+        <Span>DAYS</Span>
+        <Span reverse>TOGETHER</Span>
+        {children}
+      </InnerWrapper>
     </DaysWrapper>
   )
 }
