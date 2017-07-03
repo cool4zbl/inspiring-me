@@ -2,16 +2,13 @@ import React from 'react'
 import moment from 'moment'
 
 import styled from 'styled-components'
-import { ifProp, prop } from 'styled-tools'
+import { prop } from 'styled-tools'
 import { font, palette, size } from 'styled-theme'
 import { PageTemplate, Header, Footer, Heading,
   SingleDatePickerWrapper, Block, Utils,
-  DaysBadge
+  DaysBadge, QuoteWrapper
 } from 'components'
 
-const StyledHeading = styled(Heading)`
-  text-align: center;
-`
 // todo: Hero component
 const Wrapper = styled(Block)`
   display: flex;
@@ -19,10 +16,6 @@ const Wrapper = styled(Block)`
   height: 80vh;
   justify-content: center;
   align-items: center;
-`
-
-const QuoteWrapper = styled.div`
-  flex: ${prop('flex', 2)};
 `
 
 // Move SDP to the center header
@@ -36,7 +29,6 @@ const DatePickerWrapper = styled.div`
   background-color: ${palette('danger', 1)};
 `
 
-
 const BEGIN_DATE = moment('2017-03-12')
 
 export default class HomePage extends React.Component {
@@ -45,7 +37,7 @@ export default class HomePage extends React.Component {
     this.state = {
       date: moment(),
       bgImgUrl: '',
-      quote: ''
+      quote: {text: '', author: ''}
     }
     this.handleDateChange = this.handleDateChange.bind(this)
   }
@@ -103,8 +95,8 @@ export default class HomePage extends React.Component {
         <Wrapper>
           <DaysBadge flex={3}
             days={this.diffDays()}></DaysBadge>
-          <QuoteWrapper flex={2}>
-            <StyledHeading> { quote } ! 🌝</StyledHeading>
+          <QuoteWrapper flex={2}
+            quote={quote}>
           </QuoteWrapper>
         </Wrapper>
       </PageTemplate>

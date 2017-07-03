@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { palette, size, font } from 'styled-theme'
-import { margin, backgrounds, backgroundImages } from 'polished'
 
 const Wrapper = styled.div`
   display: flex;

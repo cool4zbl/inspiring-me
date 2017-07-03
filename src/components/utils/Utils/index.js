@@ -8,11 +8,16 @@ const bgImgs = [
   'https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg'
 ]
 
-const quotes = [
-  'Thanks',
-  'You made my day.',
-  'Thinking of you.'
-]
+const quotes = [{  
+  text: 'Thanks',
+  author: 'ZBL'
+}, {
+  text: 'You made my day.',
+  author: 'ZBL'
+}, {
+  text: 'Thinking of you.',
+  author: 'ZBL'
+}]
 
 function getRandomIntInclusive (min, max) {
   min = Math.ceil(min)
