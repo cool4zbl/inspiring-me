@@ -36,7 +36,7 @@ const QuoteWrapper = ({ children, ...props }) => {
   return (
     <Wrapper {...props}>
       <QuoteBox>
-        { props.quote.text} ! 🌝
+        { props.quote.quote} ! 🌝
       </QuoteBox>
       <UpperQuoteBox>
         { props.quote.author}

@@ -37,7 +37,7 @@ export default class HomePage extends React.Component {
     this.state = {
       date: moment(),
       bgImgUrl: '',
-      quote: {text: '', author: ''}
+      quote: {}
     }
     this.handleDateChange = this.handleDateChange.bind(this)
   }
@@ -71,10 +71,17 @@ export default class HomePage extends React.Component {
   }
 
   componentWillMount() {
-    const content = Utils.genRandomContent()
-    console.log('content', content)
-    this.setState({
-      ...content
+    const bgImgUrl = Utils.genRandomBg()
+    this.setState({ bgImgUrl })
+  }
+
+  componentDidMount() {
+    const getQuote = () => {
+      return fetch('https://random-quote-generator.herokuapp.com/api/quotes/random').then(r => r.json())
+        .catch(err => { console.log('err', e) })
+    }
+    getQuote().then(quote => {
+      this.setState({ quote })
     })
   }
 
@@ -95,8 +102,7 @@ export default class HomePage extends React.Component {
         <Wrapper>
           <DaysBadge flex={3}
             days={this.diffDays()}></DaysBadge>
-          <QuoteWrapper flex={2}
-            quote={quote}>
+          <QuoteWrapper flex={2} quote={quote}>
           </QuoteWrapper>
         </Wrapper>
       </PageTemplate>

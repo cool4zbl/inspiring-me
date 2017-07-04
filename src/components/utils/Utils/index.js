@@ -25,31 +25,16 @@ function getRandomIntInclusive (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-async function aFetch (url) {
-  try {
-    let response = await fetch(url)
-    let data = await response.json()
-    console.log(data)
-    return data
-  } catch (e) {
-    console.log("Booo")
-  }
-}
-
-function genRandomContent () {
+function genRandomBg () {
   const randomInt = getRandomIntInclusive(0, bgImgs.length - 1)
   const bgImgUrl = bgImgs[randomInt]
-  let quote = aFetch()
-  return {
-    bgImgUrl,
-    quote
-    // quote: quotes[randomInt]
-  }
+  return bgImgUrl
 }
+
 
 const Utils = {
   DEFAULT_BG_IMG,
-  genRandomContent
+  genRandomBg,
 }
 
 export default Utils
