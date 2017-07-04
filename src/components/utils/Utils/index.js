@@ -1,5 +1,5 @@
 // FIXME: cannot find proper import path of utils
-
+import 'whatwg-fetch'
 const DEFAULT_BG_IMG = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg'
 
 const bgImgs = [
@@ -8,7 +8,7 @@ const bgImgs = [
   'https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg'
 ]
 
-const quotes = [{  
+const quotes = [{
   text: 'Thanks',
   author: 'ZBL'
 }, {
@@ -25,12 +25,25 @@ function getRandomIntInclusive (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+async function aFetch (url) {
+  try {
+    let response = await fetch(url)
+    let data = await response.json()
+    console.log(data)
+    return data
+  } catch (e) {
+    console.log("Booo")
+  }
+}
+
 function genRandomContent () {
   const randomInt = getRandomIntInclusive(0, bgImgs.length - 1)
   const bgImgUrl = bgImgs[randomInt]
+  let quote = aFetch()
   return {
     bgImgUrl,
-    quote: quotes[randomInt]
+    quote
+    // quote: quotes[randomInt]
   }
 }
 

@@ -21,7 +21,7 @@ const outputPath = path.join(process.cwd(), 'dist')
 const babel = () => () => ({
   module: {
     rules: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /\.jsx|\.js?$/, exclude: /node_modules/, loader: 'babel-loader' },
     ],
   },
 })
