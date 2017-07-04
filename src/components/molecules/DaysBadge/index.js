@@ -23,10 +23,10 @@ const InnerWrapper = styled(Block)`
   justify-content: center;
   align-items: center;
   border: 4px solid ${palette('white', 0)};
-  padding: .2em;
 `
 
 const Span = styled.span`
+  margin: .2em;
   flex: 1;
   color: ${ifProp('reverse', palette('white', 2), palette('white', 0))};
   background-color: ${ifProp('reverse', palette('grayscale', 3), 'transparent')};

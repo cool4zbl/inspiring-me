@@ -5,29 +5,42 @@ import { ifProp, prop } from 'styled-tools'
 import { font, palette, size } from 'styled-theme'
 
 const Wrapper = styled.section`
-  font-family: ${font('primary')};
-  color: ${palette('grayscale', 0)};
+  width: 100vw;
   flex: ${prop('flex', 2)};
   padding: 0.5rem 0 0.5rem 1.5rem;
+  background: ${palette('white', 0)};
 `
-const QuoteBox = styled.section`
+const QuoteBox = styled.div`
   position: relative;
+  display: block;
   font-family: ${font('quote')};
   font-size: 1.2rem;
   line-height: 2rem;
+  text-align: center;
   box-sizing: border-box;
   color: ${palette('grayscale', 1)};
-  border-left: 5px solid ${palette('grayscale', 2, true)};
   margin: 1rem 0;
+`
+const UpperQuoteBox = QuoteBox.extend`
+  text-transform: uppercase;
+  padding-top: 1em;
+  border-top: .2em solid transparent;
+  border-image: 100% 0 0 linear-gradient(90deg, 
+    transparent 48vw, 
+    ${palette('grayscale', 2, true)} 48vw, 
+    ${palette('grayscale', 2, true)} 52vw, 
+    transparent 0);
 `
 
 const QuoteWrapper = ({ children, ...props }) => {
-
   return (
     <Wrapper {...props}>
       <QuoteBox>
-        { props.quote} ! 🌝
+        { props.quote.text} ! 🌝
       </QuoteBox>
+      <UpperQuoteBox>
+        { props.quote.author}
+      </UpperQuoteBox>
       {children}
     </Wrapper>
   )
