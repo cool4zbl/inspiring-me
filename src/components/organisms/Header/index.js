@@ -10,8 +10,8 @@ import {
 const Wrapper = styled(Block)`
   background-color: ${palette('danger', 1)};
   color: ${palette('white', 1)};
-  display: flex;
-  justify-content: center;
+  // display: flex;
+  // justify-content: center;
   padding: 1rem;
   height: 3.5vh;
   text-align: center;
@@ -27,6 +27,9 @@ const InnerWrapper = styled.div`
   max-width: ${size('maxWidth')};
   > :not(:first-child) {
     margin-left: 1rem;
+  }
+  @media screen and (max-width: 640px) {
+    max-width: ${size('maxMWidth')};
   }
 `
 

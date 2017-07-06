@@ -37,6 +37,7 @@ const Content = styled.section.attrs({
   background-image: ${props => `url(${props.bgImgUrl})`};
 
   @media screen and (max-width: 640px) {
+    max-width: ${size('maxMWidth')};
     margin: 0 auto;
     padding: 0;
   }

@@ -43,11 +43,17 @@ export default class HomePage extends React.Component {
   }
 
   handleDateChange (pickDate) {
+    const {date} = this.state
     if (!moment.isMoment(pickDate)) {
+      return
+    }
+    if (pickDate === date) {
       return
     }
     this.setState({
       date: pickDate
+    }, () => {
+      this.setNewQuote()
     })
   }
 
@@ -76,14 +82,16 @@ export default class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    const getQuote = () => {
-      return fetch('https://random-quote-generator.herokuapp.com/api/quotes/random').then(r => r.json())
-        .catch(err => { console.log('err', e) })
-    }
-    getQuote().then(quote => {
-      this.setState({ quote })
-    })
+    this.setNewQuote()
   }
+
+  setNewQuote () {
+    return fetch('https://random-quote-generator.herokuapp.com/api/quotes/random')
+      .then(r => r.json())
+      .then( quote => this.setState({ quote }))
+      .catch(err => { console.log('err', e) })
+  }
+
 
   diffDays () {
     const { date } = this.state

@@ -14,6 +14,9 @@ injectGlobal`
     height: 100vh;
     margin: 0;
   }
+  * {
+    box-sizing: border-box;
+  }
 `
 
 const App = () => {

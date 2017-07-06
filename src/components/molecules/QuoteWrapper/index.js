@@ -7,7 +7,8 @@ import { font, palette, size } from 'styled-theme'
 const Wrapper = styled.section`
   width: 100vw;
   flex: ${prop('flex', 2)};
-  padding: 0.5rem 0 0.5rem 1.5rem;
+  max-height: 40%;
+  padding: 0.5rem 1.5rem;
   background: ${palette('white', 0)};
 `
 const QuoteBox = styled.div`
@@ -36,7 +37,7 @@ const QuoteWrapper = ({ children, ...props }) => {
   return (
     <Wrapper {...props}>
       <QuoteBox>
-        { props.quote.quote} ! 🌝
+        { props.quote.quote} 🌝
       </QuoteBox>
       <UpperQuoteBox>
         { props.quote.author}
