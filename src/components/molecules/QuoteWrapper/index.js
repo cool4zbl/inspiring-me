@@ -8,10 +8,10 @@ const Wrapper = styled.section`
   width: 100vw;
   flex: ${prop('flex', 2)};
   max-height: 40%;
-  padding: 0.5rem 1.5rem;
   background: ${palette('white', 0)};
 `
 const QuoteBox = styled.div`
+  padding: 0.5rem 1.5rem;
   position: relative;
   display: block;
   font-family: ${font('quote')};

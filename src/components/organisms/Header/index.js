@@ -10,10 +10,10 @@ import {
 const Wrapper = styled(Block)`
   background-color: ${palette('danger', 1)};
   color: ${palette('white', 1)};
-  // display: flex;
-  // justify-content: center;
-  padding: 1rem;
-  height: 3.5vh;
+  display: flex;
+  justify-content: center;
+  padding: .5rem 1rem;
+  height: calc(10vh - .5rem);
   text-align: center;
   @media screen and (max-width: 640px) {
     // padding: 0.8rem;
