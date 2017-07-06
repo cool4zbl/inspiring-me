@@ -37,17 +37,20 @@ export default class HomePage extends React.Component {
     this.state = {
       date: moment(),
       bgImgUrl: '',
-      quote: {}
+      quote: {},
+      days: 0
     }
     this.handleDateChange = this.handleDateChange.bind(this)
   }
 
   handleDateChange (pickDate) {
-    const {date} = this.state
+    const {date, days} = this.state
     if (!moment.isMoment(pickDate)) {
       return
     }
-    if (pickDate === date) {
+    // FIXME: fix warning
+    const nDays = this.diff(pickDate, BEGIN_DATE)
+    if (nDays === days) {
       return
     }
     this.setState({
@@ -92,15 +95,18 @@ export default class HomePage extends React.Component {
       .catch(err => { console.log('err', e) })
   }
 
-
   diffDays () {
-    const { date } = this.state
-    const days = this.diff(date, BEGIN_DATE)
+    const { date, days } = this.state
+    const _days = this.diff(date, BEGIN_DATE)
+    if (_days !== days)
+      this.setState({
+        days: _days
+      });
     return days
   }
 
   render() {
-    const { date, bgImgUrl, quote } = this.state
+    const { date, bgImgUrl, quote, days } = this.state
     return (
       <PageTemplate header={<Header />} footer={<Footer />}
       bgImgUrl={bgImgUrl}>

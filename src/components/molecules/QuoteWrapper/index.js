@@ -8,9 +8,11 @@ const Wrapper = styled.section`
   width: 100vw;
   flex: ${prop('flex', 2)};
   max-height: 40%;
+  overflow-y: scroll;
   background: ${palette('white', 0)};
 `
 const QuoteBox = styled.div`
+  margin-top: 1rem;
   padding: 0.5rem 1.5rem;
   position: relative;
   display: block;
@@ -18,9 +20,7 @@ const QuoteBox = styled.div`
   font-size: 1.2rem;
   line-height: 2rem;
   text-align: center;
-  box-sizing: border-box;
   color: ${palette('grayscale', 1)};
-  margin: 1rem 0;
 `
 const UpperQuoteBox = QuoteBox.extend`
   text-transform: uppercase;
