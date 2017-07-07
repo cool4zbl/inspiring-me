@@ -57,6 +57,7 @@ export default class HomePage extends React.Component {
       date: pickDate
     }, () => {
       this.setNewQuote()
+      this.setNewBg()
     })
   }
 
@@ -74,18 +75,17 @@ export default class HomePage extends React.Component {
     return b.diff(a, 'days')
   }
 
-  getBgImgUrl () {
-    const URL = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg'
-    return URL
-  }
-
   componentWillMount() {
-    const bgImgUrl = Utils.genRandomBg()
-    this.setState({ bgImgUrl })
+    this.setNewBg()
   }
 
   componentDidMount() {
     this.setNewQuote()
+  }
+
+  setNewBg() {
+    const bgImgUrl = Utils.genRandomBg()
+    this.setState({ bgImgUrl })
   }
 
   setNewQuote () {

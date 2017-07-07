@@ -5,6 +5,7 @@ import { font, palette } from 'styled-theme'
 import { Paragraph, Link } from 'components'
 
 const Wrapper = styled.div`
+  z-index: 1001;
   background-color: ${palette('white', 2)};
   padding: .8rem;
 `

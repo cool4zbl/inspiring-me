@@ -7,16 +7,23 @@ import { font, palette, size } from 'styled-theme'
 const Wrapper = styled.section`
   width: 100vw;
   flex: ${prop('flex', 2)};
-  max-height: 40%;
+  // max-height: 40%;
   overflow-y: scroll;
   background: ${palette('white', 0)};
+  transform: translateY(50%);
+  transition: all .3s;
+  font-family: ${font('quote')};
+  &:hover, 
+  &:focus {
+    flex: 3;
+    transform: translateY(0);
+    overflow-y: auto;
+  }
 `
 const QuoteBox = styled.div`
-  margin-top: 1rem;
-  padding: 0.5rem 1.5rem;
+  padding: 1rem 1.5rem .5rem;
   position: relative;
   display: block;
-  font-family: ${font('quote')};
   font-size: 1.2rem;
   line-height: 2rem;
   text-align: center;
@@ -24,7 +31,10 @@ const QuoteBox = styled.div`
 `
 const UpperQuoteBox = QuoteBox.extend`
   text-transform: uppercase;
-  padding-top: 1em;
+  margin-top: 1rem;
+  padding: 1em .5em 1em;
+  font-size: 1rem;
+  line-height: 1.6rem;
   border-top: .2em solid transparent;
   border-image: 100% 0 0 linear-gradient(90deg, 
     transparent 48vw, 

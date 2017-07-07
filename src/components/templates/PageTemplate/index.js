@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   min-height: 100vh;
   box-sizing: border-box;
   font-family: ${font('apple')};
+  overflow: hidden;
   @media screen and (max-width: 640px) {
     padding-top: 3rem;
   }
