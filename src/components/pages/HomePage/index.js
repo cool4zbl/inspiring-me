@@ -89,6 +89,18 @@ export default class HomePage extends React.Component {
   }
 
   setNewQuote () {
+    const { date } = this.state
+    let whichDay = moment(date).format('D')
+    if (whichDay === '12') {
+      console.log(`days ${whichDay}`)
+      this.setState({
+        quote: { 
+          quote: 'Memorize Day\n #TMGF', 
+          author: 'ZBL' 
+        }
+      })
+      return
+    }
     return fetch('https://random-quote-generator.herokuapp.com/api/quotes/random')
       .then(r => r.json())
       .then( quote => this.setState({ quote }))
@@ -98,10 +110,11 @@ export default class HomePage extends React.Component {
   diffDays () {
     const { date, days } = this.state
     const _days = this.diff(date, BEGIN_DATE)
-    if (_days !== days)
+    if (_days !== days) {
       this.setState({
         days: _days
-      });
+      })
+    }
     return days
   }
 
