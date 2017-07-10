@@ -92,7 +92,6 @@ export default class HomePage extends React.Component {
     const { date } = this.state
     let whichDay = moment(date).format('D')
     if (whichDay === '12') {
-      console.log(`days ${whichDay}`)
       this.setState({
         quote: {
           quote: 'Memorize Day #TMGF',
