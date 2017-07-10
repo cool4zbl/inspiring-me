@@ -32,6 +32,7 @@ const Span = styled.span`
   background-color: ${ifProp('reverse', palette('grayscale', 3), 'transparent')};
   font-size: ${ifProp('featured', '2.8em' , '1em')};
   &:nth-child(3) {
+    // background-color: ${palette('danger', 1)};
     font-weight: 600;
   }
 `

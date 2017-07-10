@@ -13,7 +13,7 @@ const Wrapper = styled(Block)`
   display: flex;
   justify-content: center;
   padding: .5rem 1rem;
-  height: calc(10vh - .5rem);
+  height: 8vh;
   text-align: center;
   @media screen and (max-width: 640px) {
     // padding: 0.8rem;

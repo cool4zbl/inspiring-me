@@ -22,7 +22,7 @@ const Wrapper = styled(Block)`
 const DatePickerWrapper = styled.div`
   z-index: 1012;
   position: absolute;
-  top: .25rem;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -94,9 +94,9 @@ export default class HomePage extends React.Component {
     if (whichDay === '12') {
       console.log(`days ${whichDay}`)
       this.setState({
-        quote: { 
-          quote: 'Memorize Day\n #TMGF', 
-          author: 'ZBL' 
+        quote: {
+          quote: 'Memorize Day #TMGF',
+          author: 'ZBL'
         }
       })
       return

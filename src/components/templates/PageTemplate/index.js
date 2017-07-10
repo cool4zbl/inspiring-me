@@ -11,7 +11,6 @@ const Wrapper = styled.div`
   font-family: ${font('apple')};
   overflow: hidden;
   @media screen and (max-width: 640px) {
-    padding-top: 3rem;
   }
 `
 
@@ -27,7 +26,6 @@ const Content = styled.section.attrs({
   width: 100%;
   min-height: 70vh;
   box-sizing: border-box;
-  padding: .25rem;
   margin: 1rem auto;
   max-width: ${size('maxWidth')};
   background-color: ${palette('white', 1)};
@@ -41,6 +39,7 @@ const Content = styled.section.attrs({
     max-width: ${size('maxMWidth')};
     margin: 0 auto;
     padding: 0;
+    padding-top: 3rem;
   }
 `
 
