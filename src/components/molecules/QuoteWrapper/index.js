@@ -13,8 +13,7 @@ const Wrapper = styled.section`
   transform: translateY(50%);
   transition: all .3s;
   font-family: ${font('quote')};
-  &:hover, 
-  &:focus {
+  &.opened {
     flex: 3;
     transform: translateY(0);
     overflow-y: auto;

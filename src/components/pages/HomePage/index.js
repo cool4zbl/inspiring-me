@@ -8,8 +8,12 @@ import { PageTemplate, Header, Footer, Heading,
   SingleDatePickerWrapper, Block, Utils,
   DaysBadge, QuoteWrapper
 } from 'components'
+import loading from '../../loading.gif'
 
-// todo: Hero component
+const HideImg = styled.img`
+  display: none;
+`
+
 const Wrapper = styled(Block)`
   display: flex;
   flex-flow: column wrap;
@@ -36,13 +40,16 @@ export default class HomePage extends React.Component {
     super(props)
     this.state = {
       date: moment(),
-      bgImgUrl: '',
+      bgImgUrl: loading,
+      hideBadge: false,
+      openQuote: false,
+      loadingImgUrl: '',
       quote: {},
       days: 0
     }
+    this.shouldTransparent = null
     this.handleDateChange = this.handleDateChange.bind(this)
   }
-
   handleDateChange (pickDate) {
     const {date, days} = this.state
     if (!moment.isMoment(pickDate)) {
@@ -83,9 +90,27 @@ export default class HomePage extends React.Component {
     this.setNewQuote()
   }
 
-  setNewBg() {
-    const bgImgUrl = Utils.genRandomBg()
-    this.setState({ bgImgUrl })
+  handleImgLoaded () {
+   const { loadingImgUrl } = this.state
+    this.setState({
+      bgImgUrl: loadingImgUrl
+    })
+  }
+
+  setNewBg () {
+    let bgImgUrl
+    (async function getBg (self) {
+      bgImgUrl = await Utils.genRandomBg()
+      console.warn('bgImgUrl', bgImgUrl)
+      await self.setState({ 
+          loadingImgUrl: bgImgUrl,
+          bgImgUrl: loading
+      }, () => {
+        // release the object URL since it's no longer needed once the image has been loaded.
+        // fixme: need better solution
+        // URL.revokeObjectURL(bgImgUrl)
+      })
+    })(this)
   }
 
   setNewQuote () {
@@ -117,18 +142,40 @@ export default class HomePage extends React.Component {
     return days
   }
 
+  handleDaysBadgeClick () {
+    this.shouldTransparent = false
+  }
+  handleQuoteWrapperClick () {
+    this.shouldTransparent = false
+    this.setState({
+      openQuote: !this.state.openQuote
+    })
+  }
+
+  handleWrapperClick (e) {
+    console.warn('e.target', e.target)
+    if (this.shouldTransparent === null) {
+      this.shouldTransparent = true
+    }
+    if (this.shouldTransparent) {
+       this.setState( { hideBadge: !this.state.hideBadge } )
+    }
+    this.shouldTransparent = null
+  }
+
   render() {
-    const { date, bgImgUrl, quote, days } = this.state
+    // loadingImgUrl: 需要加载的 img
+    const { date, bgImgUrl, openQuote, loadingImgUrl, hideBadge, quote, days } = this.state
     return (
       <PageTemplate header={<Header />} footer={<Footer />}
       bgImgUrl={bgImgUrl}>
+        <HideImg src={loadingImgUrl} onLoad={this.handleImgLoaded.bind(this)} />
         <DatePickerWrapper className={`DatePicker`}>
           <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>
         </DatePickerWrapper>
-        <Wrapper>
-          <DaysBadge flex={3}
-            days={this.diffDays()}></DaysBadge>
-          <QuoteWrapper flex={2} quote={quote}>
+        <Wrapper onClick={this.handleWrapperClick.bind(this)}>
+          <DaysBadge hide={hideBadge} flex={3} days={this.diffDays()} onClick={this.handleDaysBadgeClick.bind(this)}/>
+          <QuoteWrapper flex={2} quote={quote} onClick={this.handleQuoteWrapperClick.bind(this)} className={openQuote ? 'opened' : ''}>
           </QuoteWrapper>
         </Wrapper>
       </PageTemplate>

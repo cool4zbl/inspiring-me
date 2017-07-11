@@ -1,7 +1,7 @@
 {
-  "name": "rocket",
+  "name": "100days",
   "version": "0.0.1",
-  "description": "A web starter kit",
+  "description": "100Days with you",
   "private": true,
   "scripts": {
     "start": "npm run dev",

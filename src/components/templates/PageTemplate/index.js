@@ -30,7 +30,7 @@ const Content = styled.section.attrs({
   max-width: ${size('maxWidth')};
   background-color: ${palette('white', 1)};
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-image: ${props => `url(${props.bgImgUrl})`};

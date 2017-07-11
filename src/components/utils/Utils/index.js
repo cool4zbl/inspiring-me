@@ -1,15 +1,9 @@
-import 'whatwg-fetch'
+// import 'whatwg-fetch'
 
-const QINIU = 'osvuk41lq.bkt.clouddn.com'
-const IMG_SUFFIX = '?imageslim'
-const DEFAULT_BG_IMG = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg'
+const QINIU = 'http://osvuk41lq.bkt.clouddn.com'
+const IMG_SUFFIX = '?imageMogr2/thumbnail/x640/format/webp/blur/1x0/quality/98|imageslim'
 
-// todo: config bgImg & quote
-const bgImgs = [
-  DEFAULT_BG_IMG,
-  'http://res.cloudinary.com/thedailybeast/image/upload/v1492110403/articles/2016/08/12/whose-gold-medal-is-worth-the-most/160811-glasser-olympic-medal-tease_mvemzf.jpg',
-  'https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg'
-]
+// const DEFAULT_BG_IMG = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg'
 
 const quotes = [{
   text: 'Thanks',
@@ -29,13 +23,26 @@ function getRandomIntInclusive (min, max) {
 }
 
 function genRandomBg () {
-  const randomInt = getRandomIntInclusive(0, bgImgs.length - 1)
-  const bgImgUrl = bgImgs[randomInt]
-  return bgImgUrl
+  let randomInt = getRandomIntInclusive(312, 319)
+  return fetchImg( '0' + randomInt).then( v => v )
+}
+
+function fetchImg (num) {
+  return fetch(`${QINIU}/IMG_${num}.JPG${IMG_SUFFIX}`).then(function(response) {
+    if(response.ok) {
+      return response.blob()
+    }
+    throw new Error('Network response was not ok.')
+  }).then(function(myBlob) { 
+    var objectURL = URL.createObjectURL(myBlob)
+    return objectURL
+  }).catch(function(error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+    return false
+  })
 }
 
 const Utils = {
-  DEFAULT_BG_IMG,
   genRandomBg,
 }
 

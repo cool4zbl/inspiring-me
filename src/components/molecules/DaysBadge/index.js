@@ -15,6 +15,8 @@ const DaysWrapper = styled.div.attrs({
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  transition: all .5s ease-in-out;
+  opacity: ${ifProp('hide', '0', '1')};
 `
 const InnerWrapper = styled(Block)`
   display: flex;
@@ -44,7 +46,7 @@ const DaysBadge = ({ children, ...props }) => {
   return (
     <DaysWrapper {...props}>
       <InnerWrapper>
-        <Span featured>{ props.days }</Span>
+        <Span featured>{ props.days}</Span>
         <Span>DAYS</Span>
         <Span reverse>TOGETHER</Span>
         {children}
