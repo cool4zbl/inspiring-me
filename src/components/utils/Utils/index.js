@@ -1,14 +1,9 @@
 // import 'whatwg-fetch'
 
 const QINIU = 'http://osvuk41lq.bkt.clouddn.com'
-const IMG_SUFFIX = '?imageslim'
-const DEFAULT_BG_IMG = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg'
+const IMG_SUFFIX = '?imageMogr2/thumbnail/x640/format/webp/blur/1x0/quality/98|imageslim'
 
-// todo: config bgImg & quote
-const bgImgs = [
-  DEFAULT_BG_IMG,
-  'https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg'
-]
+// const DEFAULT_BG_IMG = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg'
 
 const quotes = [{
   text: 'Thanks',
@@ -48,7 +43,6 @@ function fetchImg (num) {
 }
 
 const Utils = {
-  DEFAULT_BG_IMG,
   genRandomBg,
 }
 

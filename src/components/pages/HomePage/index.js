@@ -92,7 +92,6 @@ export default class HomePage extends React.Component {
    const { loadingImgUrl } = this.state
     this.setState({
       bgImgUrl: loadingImgUrl
-    }, () => {
     })
   }
 
@@ -107,7 +106,7 @@ export default class HomePage extends React.Component {
       }, () => {
         // release the object URL since it's no longer needed once the image has been loaded.
         // fixme: need better solution
-        URL.revokeObjectURL(loadingImgUrl)
+        // URL.revokeObjectURL(bgImgUrl)
       })
     })(this)
   }
