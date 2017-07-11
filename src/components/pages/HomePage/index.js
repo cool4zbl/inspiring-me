@@ -13,7 +13,7 @@ import loading from '../../loading.gif'
 const HideImg = styled.img`
   display: none;
 `
-// todo: Hero component
+
 const Wrapper = styled(Block)`
   display: flex;
   flex-flow: column wrap;
@@ -41,13 +41,14 @@ export default class HomePage extends React.Component {
     this.state = {
       date: moment(),
       bgImgUrl: loading,
+      hideBadge: false,
       loadingImgUrl: '',
       quote: {},
       days: 0
     }
+    this.shouldTransparent = null
     this.handleDateChange = this.handleDateChange.bind(this)
   }
-
   handleDateChange (pickDate) {
     const {date, days} = this.state
     if (!moment.isMoment(pickDate)) {
@@ -140,9 +141,27 @@ export default class HomePage extends React.Component {
     return days
   }
 
+  handleDaysBadgeClick () {
+    this.shouldTransparent = false
+  }
+  handleQuoteWrapperClick () {
+    this.shouldTransparent = false
+  }
+
+  handleWrapperClick (e) {
+    console.warn('e.target', e.target)
+    if (this.shouldTransparent === null) {
+      this.shouldTransparent = true
+    }
+    if (this.shouldTransparent) {
+       this.setState( { hideBadge: !this.state.hideBadge } )
+    }
+    this.shouldTransparent = null
+  }
+
   render() {
     // loadingImgUrl: 需要加载的 img
-    const { date, bgImgUrl, loadingImgUrl, quote, days } = this.state
+    const { date, bgImgUrl, loadingImgUrl, hideBadge, quote, days } = this.state
     return (
       <PageTemplate header={<Header />} footer={<Footer />}
       bgImgUrl={bgImgUrl}>
@@ -150,9 +169,9 @@ export default class HomePage extends React.Component {
         <DatePickerWrapper className={`DatePicker`}>
           <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>
         </DatePickerWrapper>
-        <Wrapper>
-          <DaysBadge flex={3} days={this.diffDays()} />
-          <QuoteWrapper flex={2} quote={quote}>
+        <Wrapper onClick={this.handleWrapperClick.bind(this)}>
+          <DaysBadge hide={hideBadge} flex={3} days={this.diffDays()} onClick={this.handleDaysBadgeClick.bind(this)}/>
+          <QuoteWrapper flex={2} quote={quote} onClick={this.handleQuoteWrapperClick.bind(this)}>
           </QuoteWrapper>
         </Wrapper>
       </PageTemplate>
