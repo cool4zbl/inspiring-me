@@ -1,4 +1,5 @@
-import 'whatwg-fetch'
+// import 'whatwg-fetch'
+
 
 const QINIU = 'osvuk41lq.bkt.clouddn.com'
 const IMG_SUFFIX = '?imageslim'
@@ -7,7 +8,6 @@ const DEFAULT_BG_IMG = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/phot
 // todo: config bgImg & quote
 const bgImgs = [
   DEFAULT_BG_IMG,
-  'http://res.cloudinary.com/thedailybeast/image/upload/v1492110403/articles/2016/08/12/whose-gold-medal-is-worth-the-most/160811-glasser-olympic-medal-tease_mvemzf.jpg',
   'https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg'
 ]
 

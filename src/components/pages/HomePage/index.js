@@ -8,7 +8,11 @@ import { PageTemplate, Header, Footer, Heading,
   SingleDatePickerWrapper, Block, Utils,
   DaysBadge, QuoteWrapper
 } from 'components'
+import loading from '../../loading.gif'
 
+const HideImg = styled.img`
+  display: none;
+`
 // todo: Hero component
 const Wrapper = styled(Block)`
   display: flex;
@@ -36,7 +40,8 @@ export default class HomePage extends React.Component {
     super(props)
     this.state = {
       date: moment(),
-      bgImgUrl: '',
+      bgImgUrl: loading,
+      loadingImgUrl: '',
       quote: {},
       days: 0
     }
@@ -83,9 +88,19 @@ export default class HomePage extends React.Component {
     this.setNewQuote()
   }
 
-  setNewBg() {
-    const bgImgUrl = Utils.genRandomBg()
-    this.setState({ bgImgUrl })
+  handleImgLoaded () {
+   const { loadingImgUrl } = this.state
+    this.setState({
+      bgImgUrl: loadingImgUrl
+    })
+  }
+
+  setNewBg () {
+    let bgImgUrl = Utils.genRandomBg()
+    this.setState({ 
+      loadingImgUrl: bgImgUrl,
+      bgImgUrl: loading
+    })
   }
 
   setNewQuote () {
@@ -118,16 +133,17 @@ export default class HomePage extends React.Component {
   }
 
   render() {
-    const { date, bgImgUrl, quote, days } = this.state
+    // loadingImgUrl: 需要加载的 img
+    const { date, bgImgUrl, loadingImgUrl, quote, days } = this.state
     return (
       <PageTemplate header={<Header />} footer={<Footer />}
       bgImgUrl={bgImgUrl}>
+        <HideImg src={loadingImgUrl} onLoad={this.handleImgLoaded.bind(this)} />
         <DatePickerWrapper className={`DatePicker`}>
           <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>
         </DatePickerWrapper>
         <Wrapper>
-          <DaysBadge flex={3}
-            days={this.diffDays()}></DaysBadge>
+          <DaysBadge flex={3} days={this.diffDays()} />
           <QuoteWrapper flex={2} quote={quote}>
           </QuoteWrapper>
         </Wrapper>
