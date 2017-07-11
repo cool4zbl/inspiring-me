@@ -11,7 +11,6 @@ const bgImgs = [
   'https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg'
 ]
 
-
 const quotes = [{
   text: 'Thanks',
   author: 'ZBL'
