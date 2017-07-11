@@ -101,8 +101,7 @@ export default class HomePage extends React.Component {
     let bgImgUrl
     (async function getBg (self) {
       bgImgUrl = await Utils.genRandomBg()
-      console.warn('bgImgUrl', bgImgUrl)
-      await self.setState({ 
+      await self.setState({
           loadingImgUrl: bgImgUrl,
           bgImgUrl: loading
       }, () => {
@@ -153,7 +152,6 @@ export default class HomePage extends React.Component {
   }
 
   handleWrapperClick (e) {
-    console.warn('e.target', e.target)
     if (this.shouldTransparent === null) {
       this.shouldTransparent = true
     }
