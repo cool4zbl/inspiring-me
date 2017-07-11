@@ -92,15 +92,24 @@ export default class HomePage extends React.Component {
    const { loadingImgUrl } = this.state
     this.setState({
       bgImgUrl: loadingImgUrl
+    }, () => {
     })
   }
 
   setNewBg () {
-    let bgImgUrl = Utils.genRandomBg()
-    this.setState({ 
-      loadingImgUrl: bgImgUrl,
-      bgImgUrl: loading
-    })
+    let bgImgUrl
+    (async function getBg (self) {
+      bgImgUrl = await Utils.genRandomBg()
+      console.warn('bgImgUrl', bgImgUrl)
+      await self.setState({ 
+          loadingImgUrl: bgImgUrl,
+          bgImgUrl: loading
+      }, () => {
+        // release the object URL since it's no longer needed once the image has been loaded.
+        // fixme: need better solution
+        URL.revokeObjectURL(loadingImgUrl)
+      })
+    })(this)
   }
 
   setNewQuote () {
