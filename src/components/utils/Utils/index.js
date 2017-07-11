@@ -1,7 +1,7 @@
 // import 'whatwg-fetch'
 
 const QINIU = 'http://osvuk41lq.bkt.clouddn.com'
-const IMG_SUFFIX = '?imageMogr2/thumbnail/x640/format/webp/blur/1x0/quality/98|imageslim'
+const IMG_SUFFIX = '?imageMogr2/thumbnail/x640/blur/1x0/quality/98|imageslim'
 
 // const DEFAULT_BG_IMG = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg'
 
@@ -33,7 +33,7 @@ function fetchImg (num) {
       return response.blob()
     }
     throw new Error('Network response was not ok.')
-  }).then(function(myBlob) { 
+  }).then(function(myBlob) {
     var objectURL = URL.createObjectURL(myBlob)
     return objectURL
   }).catch(function(error) {

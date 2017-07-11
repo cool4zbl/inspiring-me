@@ -9,6 +9,7 @@ import {
 
 const DaysWrapper = styled.div.attrs({
 })`
+  max-width: 100px;
   max-width: max-content;
   flex: ${prop('flex', 3)};
   display: flex;

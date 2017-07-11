@@ -15,6 +15,7 @@ injectGlobal`
     margin: 0;
   }
   * {
+    -webkit-tap-highlight-color: none;
     box-sizing: border-box;
   }
 `
