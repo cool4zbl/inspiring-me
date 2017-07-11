@@ -42,6 +42,7 @@ export default class HomePage extends React.Component {
       date: moment(),
       bgImgUrl: loading,
       hideBadge: false,
+      openQuote: false,
       loadingImgUrl: '',
       quote: {},
       days: 0
@@ -146,6 +147,9 @@ export default class HomePage extends React.Component {
   }
   handleQuoteWrapperClick () {
     this.shouldTransparent = false
+    this.setState({
+      openQuote: !this.state.openQuote
+    })
   }
 
   handleWrapperClick (e) {
@@ -161,7 +165,7 @@ export default class HomePage extends React.Component {
 
   render() {
     // loadingImgUrl: 需要加载的 img
-    const { date, bgImgUrl, loadingImgUrl, hideBadge, quote, days } = this.state
+    const { date, bgImgUrl, openQuote, loadingImgUrl, hideBadge, quote, days } = this.state
     return (
       <PageTemplate header={<Header />} footer={<Footer />}
       bgImgUrl={bgImgUrl}>
@@ -171,7 +175,7 @@ export default class HomePage extends React.Component {
         </DatePickerWrapper>
         <Wrapper onClick={this.handleWrapperClick.bind(this)}>
           <DaysBadge hide={hideBadge} flex={3} days={this.diffDays()} onClick={this.handleDaysBadgeClick.bind(this)}/>
-          <QuoteWrapper flex={2} quote={quote} onClick={this.handleQuoteWrapperClick.bind(this)}>
+          <QuoteWrapper flex={2} quote={quote} onClick={this.handleQuoteWrapperClick.bind(this)} className={openQuote ? 'opened' : ''}>
           </QuoteWrapper>
         </Wrapper>
       </PageTemplate>
