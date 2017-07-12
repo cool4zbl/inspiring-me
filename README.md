@@ -11,7 +11,7 @@
 - 简单点的话，可以背景都是预设的纯色, 字体也是预设的中英文字体
 - 可以配置背景图片，每日数据
 - DatePicker: [airbnb-react-date](https://github.com/airbnb/react-dates/blob/0eb0d046171239dd5efa06da7909c7fc34eb0b6f/src/components/SingleDatePickerInput.jsx) or [react-day-picker] (http://react-day-picker.js.org/)(试了下这个，对于移动端兼容性比较低...)
-- 图片背景可以上传到 七牛云 进行 cdn 加速
+- [x] 图片背景可以上传到 七牛云 进行 cdn 加速
 
 ### Header
 Daily  日常
@@ -20,28 +20,24 @@ Daily  日常
 
 跳到那天
 
-规则： 特定日期 `*.12` 特殊显示
-
-2.12 开始，之前的基本灰掉
-
-100 days 后显示灿烂的明天
+规则：
+- [] 特定日期 `*.12` 特殊显示
+- [x] 2.12 开始，之前的基本灰掉
+- [] 未到的显示灿烂的明天
 
 ### Body
 
-- 显示日期，当天的事情或者照片
+- [x] 显示日期，当天的事情或者照片，现在暂时放前端
 
-之后可以 服务端显示更新数据，现在暂时放前端
+- [] 之后可以 服务端显示更新数据
 
-可以考虑 4sqi API，统计一下 with 数据；
+- [] 可以考虑 4sqi API，统计一下 with 数据；
 
-设计参考 https://codepen.io/vickylaiio/pen/yMaeQL
-
-如果引用的话字数超了，clamp(4) 点击再上滑放大;
-或者字体根据字数多少变小
+- [] 如果引用的话字数超了，clamp(4) 点击再上滑放大; 或者字体根据字数多少变小
 
 ### Footer
 
-Made with ❤️ by me.
+- [x] Made with ❤️ by ZBL
 
 
 ---
