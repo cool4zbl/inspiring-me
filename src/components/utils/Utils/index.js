@@ -1,4 +1,4 @@
-// import 'whatwg-fetch'
+import 'whatwg-fetch'
 
 const QINIU = 'http://osvuk41lq.bkt.clouddn.com'
 const IMG_SUFFIX = '?imageMogr2/thumbnail/x640/blur/1x0/quality/98|imageslim'
