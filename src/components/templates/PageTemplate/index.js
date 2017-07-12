@@ -29,7 +29,7 @@ const Content = styled.section.attrs({
   margin: 1rem auto;
   max-width: ${size('maxWidth')};
   background-color: ${palette('white', 1)};
-  // more gorgeous pics using w/h proportion
+  /* more gorgeous pics using w/h proportion */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
