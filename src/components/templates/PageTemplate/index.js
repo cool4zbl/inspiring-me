@@ -38,9 +38,8 @@ const Content = styled.section.attrs({
 
   @media screen and (max-width: 640px) {
     max-width: ${size('maxMWidth')};
-    margin: 0 auto;
+    margin: 8vh auto 0;
     padding: 0;
-    padding-top: 3rem;
   }
 `
 
