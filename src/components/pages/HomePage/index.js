@@ -25,7 +25,7 @@ const Wrapper = styled(Block)`
 // Move SDP to the center header
 const DatePickerWrapper = styled.div`
   z-index: 1012;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 50%;
   transform: translateX(-50%);

@@ -7,7 +7,6 @@ import { font, palette, size } from 'styled-theme'
 const Wrapper = styled.section`
   width: 100vw;
   flex: ${prop('flex', 2)};
-  // max-height: 40%;
   overflow-y: scroll;
   background: ${palette('white', 0)};
   transform: translateY(50%);

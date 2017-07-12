@@ -16,7 +16,7 @@ const DaysWrapper = styled.div.attrs({
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  transition: all .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
   opacity: ${ifProp('hide', '0', '1')};
 `
 const InnerWrapper = styled(Block)`

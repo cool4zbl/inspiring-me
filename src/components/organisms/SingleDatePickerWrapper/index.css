@@ -32,3 +32,6 @@ background: #f44336; }
   border-color: hsla(4, 90%, 78%, 0.7);
   border-radius: 3px;
   color: white; }
+.DateInput {
+  line-height: 30px;
+}
