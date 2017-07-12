@@ -31,7 +31,7 @@ const Content = styled.section.attrs({
   background-color: ${palette('white', 1)};
   /* more gorgeous pics using w/h proportion */
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-image: ${props => `url(${props.bgImgUrl})`};

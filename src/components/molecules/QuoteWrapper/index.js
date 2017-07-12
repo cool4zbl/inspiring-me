@@ -33,6 +33,7 @@ const UpperQuoteBox = QuoteBox.extend`
   padding: 1em .5em 1em;
   font-size: 1rem;
   line-height: 1.6rem;
+  text-align: right;
   border-top: .2em solid transparent;
   border-image: 100% 0 0 linear-gradient(90deg,
     transparent 48vw,
