@@ -12,8 +12,8 @@ function getRandomIntInclusive (min, max) {
 }
 
 function genRandomBg () {
-  let randomInt = getRandomIntInclusive(312, 323)
-  
+  let randomInt = getRandomIntInclusive(312, 350)
+
   return fetchImg( '0' + randomInt).then( v => v ) || DEFAULT_BG_IMG
 }
 
