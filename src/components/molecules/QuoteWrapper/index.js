@@ -13,7 +13,7 @@ const Wrapper = styled.section`
   transition: all .3s;
   font-family: ${font('quote')};
   &.opened {
-    flex: 3;
+    flex: 1;
     transform: translateY(0);
     overflow-y: auto;
   }
@@ -22,8 +22,8 @@ const QuoteBox = styled.div`
   padding: 1rem 1.5rem .5rem;
   position: relative;
   display: block;
-  font-size: 1.2rem;
-  line-height: 2rem;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
   text-align: center;
   color: ${palette('grayscale', 1)};
 `
@@ -34,10 +34,10 @@ const UpperQuoteBox = QuoteBox.extend`
   font-size: 1rem;
   line-height: 1.6rem;
   border-top: .2em solid transparent;
-  border-image: 100% 0 0 linear-gradient(90deg, 
-    transparent 48vw, 
-    ${palette('grayscale', 2, true)} 48vw, 
-    ${palette('grayscale', 2, true)} 52vw, 
+  border-image: 100% 0 0 linear-gradient(90deg,
+    transparent 48vw,
+    ${palette('grayscale', 2, true)} 48vw,
+    ${palette('grayscale', 2, true)} 52vw,
     transparent 0);
 `
 
@@ -45,11 +45,15 @@ const QuoteWrapper = ({ children, ...props }) => {
   return (
     <Wrapper {...props}>
       <QuoteBox>
-        { props.quote.quote} 🌝
+        { props.quote.quote}
       </QuoteBox>
-      <UpperQuoteBox>
-        { props.quote.author}
-      </UpperQuoteBox>
+      { props.quote.author
+          ?
+          <UpperQuoteBox>
+            { props.quote.author }
+          </UpperQuoteBox>
+          : ''
+      }
       {children}
     </Wrapper>
   )

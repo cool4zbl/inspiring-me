@@ -6,7 +6,7 @@ import { prop } from 'styled-tools'
 import { font, palette, size } from 'styled-theme'
 import { PageTemplate, Header, Footer, Heading,
   SingleDatePickerWrapper, Block, Utils,
-  DaysBadge, QuoteWrapper
+  DaysBadge, QuoteWrapper, Quotes
 } from 'components'
 import loading from '../../loading.gif'
 
@@ -84,6 +84,10 @@ export default class HomePage extends React.Component {
 
   componentWillMount() {
     this.setNewBg()
+    const days = this.diff(moment(), BEGIN_DATE)
+    this.setState({
+      days
+    })
   }
 
   componentDidMount() {
@@ -113,21 +117,18 @@ export default class HomePage extends React.Component {
   }
 
   setNewQuote () {
-    const { date } = this.state
+    const { date, days } = this.state
     let whichDay = moment(date).format('D')
-    if (whichDay === '12') {
-      this.setState({
-        quote: {
-          quote: 'Memorize Day #TMGF',
-          author: 'ZBL'
-        }
-      })
-      return
+    let quote
+    quote = {
+      'quote': Quotes[days]
     }
-    return fetch('https://random-quote-generator.herokuapp.com/api/quotes/random')
-      .then(r => r.json())
-      .then( quote => this.setState({ quote }))
-      .catch(err => { console.log('err', e) })
+    quote && this.setState({ quote })
+    return
+    // return fetch('https://random-quote-generator.herokuapp.com/api/quotes/random')
+    //   .then(r => r.json())
+    //   .then( quote => this.setState({ quote }))
+    //   .catch(err => { console.log('err', e) })
   }
 
   diffDays () {
