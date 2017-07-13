@@ -13,7 +13,6 @@
     "development": {
       "plugins": [
         "transform-es2015-modules-commonjs",
-        "polished",
         ["styled-components", {
           "minify": false
         }]
@@ -27,7 +26,6 @@
     "production": {
       "plugins": [
         "transform-react-remove-prop-types",
-        "polished",
         ["styled-components", {
           "displayName": false
         }]

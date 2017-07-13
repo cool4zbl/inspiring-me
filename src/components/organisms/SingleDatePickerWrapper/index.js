@@ -8,23 +8,6 @@ import { SingleDatePicker } from 'react-dates'
 import 'react-dates/lib/css/_datepicker.css'
 import './index.css'
 
-const constants = {
-  DISPLAY_FORMAT: 'L',
-  ISO_FORMAT: 'YYYY-MM-DD',
-  ISO_MONTH_FORMAT: 'YYYY-MM',
-  START_DATE: 'startDate',
-  END_DATE: 'endDate',
-  HORIZONTAL_ORIENTATION: 'horizontal',
-  VERTICAL_ORIENTATION: 'vertical',
-  VERTICAL_SCROLLABLE: 'verticalScrollable',
-  ANCHOR_LEFT: 'left',
-  ANCHOR_RIGHT: 'right',
-  DAY_SIZE: 50,
-  BLOCKED_MODIFIER: 'blocked'
-}
-
-import { HORIZONTAL_ORIENTATION, ANCHOR_LEFT, DAY_SIZE } from 'constants'
-
 function isSameDay (a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
 
@@ -93,8 +76,8 @@ const defaultProps = {
 
   // calendar presentation and interaction related props
   renderMonth: null,
-  orientation: HORIZONTAL_ORIENTATION,
-  anchorDirection: ANCHOR_LEFT,
+  orientation: 'horizontal',
+  anchorDirection: 'left',
   horizontalMargin: 0,
   withPortal: false,
   withFullScreenPortal: true,

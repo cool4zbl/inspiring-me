@@ -9,6 +9,6 @@ while (_arr.length <= 123) {
   _arr.splice(-2, 0, '我爱你。😘')
 }
 let Quotes = _arr
-console.warn('quoes', Quotes)
+// console.warn('quoes', Quotes)
 
 export default Quotes

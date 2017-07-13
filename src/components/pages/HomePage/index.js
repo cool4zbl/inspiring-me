@@ -50,6 +50,7 @@ export default class HomePage extends React.Component {
     this.shouldTransparent = null
     this.handleDateChange = this.handleDateChange.bind(this)
   }
+
   handleDateChange (pickDate) {
     const {date, days} = this.state
     if (!moment.isMoment(pickDate)) {
@@ -119,7 +120,7 @@ export default class HomePage extends React.Component {
   setNewQuote () {
     const { date, days } = this.state
     let whichDay = moment(date).format('MD')
-    console.warn('whichday', whichDay)
+    // console.warn('whichday', whichDay)
     let quote
     quote = {
       'quote': Quotes[days]
