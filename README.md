@@ -1,4 +1,8 @@
 # Daily 日.常
+一个结合单向历 + DaysMaster 的日历 WebApp
+
+[DEMO](http://zhangbinliu.me/2017-07-12-to-myhz/)
+
 
 ## Design:
 
@@ -42,16 +46,18 @@ Daily  日常
 - [x] Made with ❤️ by ZBL
 
 
+### Techstack
+- [ ] Consider using `redux` to store data, like bg_img_url, quotes, days, etc...
+
+
 ---
 # Notes
 
-- [ ] Consider using `redux` to store data, like bg_img_url, quotes, days, etc...
-```javascript
+```css
 display: flex;
 flex-flow: column/row wrap;
 justify-content: center; // row: horizontal center | column: veritical center
 align-items: center; // row: vertical center | column: horizontal center
-
 ```
 
 
