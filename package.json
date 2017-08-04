@@ -3,7 +3,15 @@
   "version": "0.1.0",
   "description": "100Days with you",
   "private": true,
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css,scss}": [
+      "prettier --no-semi --trailing-comma es5 --jsx-bracket-same-line --single-quote --write",
+      "git add"
+    ]
+  },
   "scripts": {
+    "precommit": "lint-staged",
+    "format": "prettier --no-semi --single-quote --trailing-comma es5 --jsx-bracket-same-line --write 'src/**/*.{js,jsx}'",
     "start": "npm run dev",
     "env:dev": "cross-env NODE_ENV=development",
     "env:prod": "cross-env NODE_ENV=production",
@@ -58,8 +66,12 @@
   },
   "dependencies": {
     "history": "^4.6.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.2",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
+    "polished": "^1.3.0",
+    "prettier": "^1.5.3",
     "prop-types": "^15.5.8",
     "react": "^15.6.1",
     "react-addons-shallow-compare": "^15.6.0",
