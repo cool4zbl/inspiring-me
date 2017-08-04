@@ -15,7 +15,6 @@
     "start": "npm run dev",
     "env:dev": "cross-env NODE_ENV=development",
     "env:prod": "cross-env NODE_ENV=production",
-    "env:example": "cross-env SOURCE=src-example",
     "lint": "eslint src webpack.config.js",
     "dev": "npm run env:dev -- webpack-dev-server",
     "build:clean": "rimraf \"dist/!(.git*|Procfile)**\"",
