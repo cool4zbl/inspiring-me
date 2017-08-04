@@ -20,7 +20,7 @@ const Header = styled.header`
   width: 100%;
   z-index: 999;
 `
-// FIXME: polished not support object rest speread
+
 const Content = styled.section.attrs({
 })`
   width: 100%;

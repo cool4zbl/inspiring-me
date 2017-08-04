@@ -120,7 +120,6 @@ export default class HomePage extends React.Component {
   setNewQuote () {
     const { date, days } = this.state
     let whichDay = moment(date).format('MD')
-    // console.warn('whichday', whichDay)
     let quote
     quote = {
       'quote': Quotes[days]

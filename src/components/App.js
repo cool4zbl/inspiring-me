@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 import { normalize } from 'polished'
 
-import { HomePage, SamplePage, NotFoundPage } from 'components'
+import { HomePage, NotFoundPage } from 'components'
 
 import theme from './themes/default'
 
@@ -26,7 +26,6 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Switch>
         <Route path="/" component={HomePage} exact />
-        <Route path="/sample-page" component={SamplePage} />
         <Route component={NotFoundPage} />
       </Switch>
     </ThemeProvider>

@@ -14,7 +14,7 @@
 - 以后可以更换整体颜色 colorset?
 - 简单点的话，可以背景都是预设的纯色, 字体也是预设的中英文字体
 - 可以配置背景图片，每日数据
-- DatePicker: [airbnb-react-date](https://github.com/airbnb/react-dates/blob/0eb0d046171239dd5efa06da7909c7fc34eb0b6f/src/components/SingleDatePickerInput.jsx) or [react-day-picker] (http://react-day-picker.js.org/)(试了下这个，对于移动端兼容性比较低...)
+- DatePicker: [airbnb-react-date](https://github.com/airbnb/react-dates/blob/0eb0d046171239dd5efa06da7909c7fc34eb0b6f/src/components/SingleDatePickerInput.jsx) or [react-day-picker](http://react-day-picker.js.org/) (试了下这个，对于移动端兼容性比较低...)
 - [x] 图片背景可以上传到 七牛云 进行 cdn 加速
 - [ ] 根据不同的图片尺寸微调样式，达到最好的显示效果
 - [ ] 渐变的图片背景，可以考虑 P2

@@ -5,6 +5,12 @@ const IMG_SUFFIX = '?imageMogr2/thumbnail/x640/blur/1x0/quality/98|imageslim'
 
 const DEFAULT_BG_IMG = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/photo-1429043794791-eb8f26f44081.jpeg'
 
+const REG_M = /iphone|ipad|ios|android/i
+
+const mediaQuery = () => {
+  const isMobile = window.matchMedia('(max-width: 480px)').matches || REG_M.test(window.navigtor.userAgent)
+}
+
 function getRandomIntInclusive (min, max) {
   min = Math.ceil(min)
   max = Math.floor(max)
@@ -34,6 +40,7 @@ function fetchImg (num) {
 
 const Utils = {
   genRandomBg,
+  mediaQuery
 }
 
 export default Utils

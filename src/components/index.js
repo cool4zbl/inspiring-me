@@ -3,6 +3,7 @@
 // https://webpack.github.io/docs/context.html
 
 // ./{xxx}/yyy/index.js => import { yyy } from 'components'
+
 const req = require.context('.', true, /\.\/[^/]+\/[^/]+\/index\.js$/)
 
 req.keys().forEach((key) => {
