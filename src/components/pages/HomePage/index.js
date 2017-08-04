@@ -4,15 +4,21 @@ import moment from 'moment'
 import styled from 'styled-components'
 import { prop } from 'styled-tools'
 import { font, palette, size } from 'styled-theme'
-import { PageTemplate, Header, Footer, Heading,
-  SingleDatePickerWrapper, Block, Utils,
-  DaysBadge, QuoteWrapper, Quotes
+import {
+  PageTemplate,
+  Header,
+  Footer,
+  Heading,
+  SingleDatePickerWrapper,
+  Block,
+  Utils,
+  DaysBadge,
+  QuoteWrapper,
+  Quotes,
 } from 'components'
 import loading from '../../loading.gif'
 
-const HideImg = styled.img`
-  display: none;
-`
+const HideImg = styled.img`display: none;`
 
 const Wrapper = styled(Block)`
   display: flex;
@@ -45,14 +51,14 @@ export default class HomePage extends React.Component {
       openQuote: false,
       loadingImgUrl: '',
       quote: {},
-      days: 0
+      days: 0,
     }
     this.shouldTransparent = null
     this.handleDateChange = this.handleDateChange.bind(this)
   }
 
-  handleDateChange (pickDate) {
-    const {date, days} = this.state
+  handleDateChange(pickDate) {
+    const { date, days } = this.state
     if (!moment.isMoment(pickDate)) {
       return
     }
@@ -61,22 +67,25 @@ export default class HomePage extends React.Component {
     if (nDays === days) {
       return
     }
-    this.setState({
-      date: pickDate
-    }, () => {
-      this.setNewQuote()
-      this.setNewBg()
-    })
+    this.setState(
+      {
+        date: pickDate,
+      },
+      () => {
+        this.setNewQuote()
+        this.setNewBg()
+      }
+    )
   }
 
-  computeTimeFromX (a, b) {
+  computeTimeFromX(a, b) {
     if (!moment.isMoment(a) || !moment.isMoment(b)) {
       return
     }
     return a.from(b, true)
   }
 
-  diff (b, a) {
+  diff(b, a) {
     if (!moment.isMoment(a) || !moment.isMoment(b)) {
       return
     }
@@ -84,10 +93,15 @@ export default class HomePage extends React.Component {
   }
 
   componentWillMount() {
+    if (!Utils.mediaQuery()) {
+      location.href = '/sharing'
+      return
+    }
+
     this.setNewBg()
     const days = this.diff(moment(), BEGIN_DATE)
     this.setState({
-      days
+      days,
     })
   }
 
@@ -95,38 +109,41 @@ export default class HomePage extends React.Component {
     this.setNewQuote()
   }
 
-  handleImgLoaded () {
-   const { loadingImgUrl } = this.state
+  handleImgLoaded() {
+    const { loadingImgUrl } = this.state
     this.setState({
-      bgImgUrl: loadingImgUrl
+      bgImgUrl: loadingImgUrl,
     })
   }
 
-  setNewBg () {
+  setNewBg() {
     let bgImgUrl
-    (async function getBg (self) {
+    ;(async function getBg(self) {
       bgImgUrl = await Utils.genRandomBg()
-      await self.setState({
+      await self.setState(
+        {
           loadingImgUrl: bgImgUrl,
-          bgImgUrl: loading
-      }, () => {
-        // release the object URL since it's no longer needed once the image has been loaded.
-        // fixme: need better solution
-        // URL.revokeObjectURL(bgImgUrl)
-      })
+          bgImgUrl: loading,
+        },
+        () => {
+          // release the object URL since it's no longer needed once the image has been loaded.
+          // fixme: need better solution
+          // URL.revokeObjectURL(bgImgUrl)
+        }
+      )
     })(this)
   }
 
-  setNewQuote () {
+  setNewQuote() {
     const { date, days } = this.state
     let whichDay = moment(date).format('MD')
     let quote
     quote = {
-      'quote': Quotes[days]
+      quote: Quotes[days],
     }
     // hack
     if (whichDay == '712') {
-      quote = {...quote, author: '——— 仙人掌 🌵'}
+      quote = { ...quote, author: '——— 仙人掌 🌵' }
     }
     quote && this.setState({ quote })
     return
@@ -136,51 +153,67 @@ export default class HomePage extends React.Component {
     //   .catch(err => { console.log('err', e) })
   }
 
-  diffDays () {
+  diffDays() {
     const { date, days } = this.state
     const _days = this.diff(date, BEGIN_DATE)
     if (_days !== days) {
       this.setState({
-        days: _days
+        days: _days,
       })
     }
     return days
   }
 
-  handleDaysBadgeClick () {
+  handleDaysBadgeClick() {
     this.shouldTransparent = false
   }
-  handleQuoteWrapperClick () {
+  handleQuoteWrapperClick() {
     this.shouldTransparent = false
     this.setState({
-      openQuote: !this.state.openQuote
+      openQuote: !this.state.openQuote,
     })
   }
 
-  handleWrapperClick (e) {
+  handleWrapperClick(e) {
     if (this.shouldTransparent === null) {
       this.shouldTransparent = true
     }
     if (this.shouldTransparent) {
-       this.setState( { hideBadge: !this.state.hideBadge } )
+      this.setState({ hideBadge: !this.state.hideBadge })
     }
     this.shouldTransparent = null
   }
 
   render() {
     // loadingImgUrl: 需要加载的 img
-    const { date, bgImgUrl, openQuote, loadingImgUrl, hideBadge, quote, days } = this.state
+    const {
+      date,
+      bgImgUrl,
+      openQuote,
+      loadingImgUrl,
+      hideBadge,
+      quote,
+      days,
+    } = this.state
     return (
-      <PageTemplate header={<Header />} footer={<Footer />}
-      bgImgUrl={bgImgUrl}>
+      <PageTemplate header={<Header />} footer={<Footer />} bgImgUrl={bgImgUrl}>
         <HideImg src={loadingImgUrl} onLoad={this.handleImgLoaded.bind(this)} />
         <DatePickerWrapper className={`DatePicker`}>
-          <SingleDatePickerWrapper handleDateChange={this.handleDateChange}/>
+          <SingleDatePickerWrapper handleDateChange={this.handleDateChange} />
         </DatePickerWrapper>
         <Wrapper onClick={this.handleWrapperClick.bind(this)}>
-          <DaysBadge hide={hideBadge} flex={3} days={this.diffDays()} onClick={this.handleDaysBadgeClick.bind(this)}/>
-          <QuoteWrapper flex={2} quote={quote} onClick={this.handleQuoteWrapperClick.bind(this)} className={openQuote ? 'opened' : ''}>
-          </QuoteWrapper>
+          <DaysBadge
+            hide={hideBadge}
+            flex={3}
+            days={this.diffDays()}
+            onClick={this.handleDaysBadgeClick.bind(this)}
+          />
+          <QuoteWrapper
+            flex={2}
+            quote={quote}
+            onClick={this.handleQuoteWrapperClick.bind(this)}
+            className={openQuote ? 'opened' : ''}
+          />
         </Wrapper>
       </PageTemplate>
     )

@@ -26,7 +26,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Switch>
         <Route path="/" component={HomePage} exact />
-        <Route path="sharing" component={SharingPage} exact />
+        <Route path="/sharing" component={SharingPage} exact />
         <Route component={NotFoundPage} />
       </Switch>
     </ThemeProvider>
