@@ -3,12 +3,9 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { ifProp, prop } from 'styled-tools'
 import { font, palette, size } from 'styled-theme'
-import {
-  Block
-} from 'components'
+import { Block } from 'components'
 
-const DaysWrapper = styled.div.attrs({
-})`
+const DaysWrapper = styled.div`
   max-width: 100px;
   max-width: max-content;
   flex: ${prop('flex', 3)};
@@ -19,6 +16,7 @@ const DaysWrapper = styled.div.attrs({
   transition: opacity .5s ease-in-out;
   opacity: ${ifProp('hide', '0', '1')};
 `
+
 const InnerWrapper = styled(Block)`
   display: flex;
   flex-flow: column wrap;
@@ -32,10 +30,13 @@ const Span = styled.span`
   padding: .2em;
   flex: 1;
   color: ${ifProp('reverse', palette('white', 2), palette('white', 0))};
-  background-color: ${ifProp('reverse', palette('grayscale', 3), 'transparent')};
-  font-size: ${ifProp('featured', '2.8em' , '1em')};
+  background-color: ${ifProp(
+    'reverse',
+    palette('grayscale', 3),
+    'transparent'
+  )};
+  font-size: ${ifProp('featured', '2.8em', '1em')};
   &:nth-child(3) {
-    // background-color: ${palette('danger', 1)};
     font-weight: 600;
   }
 `
@@ -43,11 +44,12 @@ const Span = styled.span`
 const INIT_COPY = 'Yeah, WE ARE TOGETHER TODAY '
 
 const DaysBadge = ({ children, ...props }) => {
-
   return (
     <DaysWrapper {...props}>
       <InnerWrapper>
-        <Span featured>{ props.days}</Span>
+        <Span featured>
+          {props.days}
+        </Span>
         <Span>DAYS</Span>
         <Span reverse>TOGETHER</Span>
         {children}
@@ -58,7 +60,7 @@ const DaysBadge = ({ children, ...props }) => {
 
 DaysBadge.propTypes = {
   reverse: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.any,
 }
 
 export default DaysBadge

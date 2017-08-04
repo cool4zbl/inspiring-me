@@ -26,7 +26,7 @@ const SharingPage = () => {
   return (
     <PageTemplate header={<Header />} footer={<Footer />}>
       <Wrapper>
-        <Heading level={2}>
+        <Heading level={2} palette={'grayscale'}>
           For the best experience, please scan the QR code below and check the
           pretty page in your mobile.
         </Heading>
