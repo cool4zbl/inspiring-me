@@ -1,8 +1,10 @@
 # Daily 日.常
 一个结合单向历 + DaysMaster 的日历 WebApp
 
-[DEMO](http://zhangbinliu.me/2017-07-12-to-myhz/)
+### [DEMO](http://zhangbinliu.me/2017-07-12-to-myhz/)
 
+### Preview
+<img src="screenshot.png" height="500" align="center"/>
 
 ## Design:
 
