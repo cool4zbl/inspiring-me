@@ -17,7 +17,7 @@ const styles = css`
 const StyledNavLink = styled(({ theme, reverse, palette, ...props }) =>
   <NavLink {...props} />
 )`${styles}`
-const Anchor = styled.a`${styles}`
+const Anchor = styled.a`${styles};`
 
 const Link = ({ ...props }) => {
   if (props.to) {

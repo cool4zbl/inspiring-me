@@ -8,10 +8,8 @@ const Wrapper = styled.div`
   color: ${palette('grayscale', 0)};
 `
 
-const Organism = (props) => {
-  return (
-    <Wrapper {...props}>content</Wrapper>
-  )
+const Organism = props => {
+  return <Wrapper {...props}>content</Wrapper>
 }
 
 Organism.propTypes = {

@@ -14,17 +14,17 @@ const mediaQuery = () => {
 
 function fetchImg(num) {
   return fetch(UNSPLASH_API)
-    .then(function(response) {
+    .then(response => {
       if (response.ok) {
         return response.blob()
       }
       throw new Error('Network response was not ok.')
     })
-    .then(function(myBlob) {
-      var objectURL = URL.createObjectURL(myBlob)
+    .then(myBlob => {
+      const objectURL = URL.createObjectURL(myBlob)
       return objectURL
     })
-    .catch(function(error) {
+    .catch(error => {
       console.log(
         'There has been a problem with your fetch operation: ' + error.message
       )

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { palette, size, font } from 'styled-theme'
 
 const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   max-width: ${size('maxMWidth')};

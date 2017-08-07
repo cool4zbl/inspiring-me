@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { font, palette } from 'styled-theme'
 
-const fontSize = ({ level }) => `${0.75 + (1 * (1 / level))}rem`
+const fontSize = ({ level }) => `${0.75 + 1 * (1 / level)}rem`
 
 const styles = css`
   font-family: ${font('primary')};
@@ -15,8 +15,9 @@ const styles = css`
   color: ${palette({ grayscale: 0 }, 1)};
 `
 
-const Heading = styled(({ level, children, reverse, palette, theme, ...props }) =>
-  React.createElement(`h${level}`, props, children)
+const Heading = styled(
+  ({ level, children, reverse, palette, theme, ...props }) =>
+    React.createElement(`h${level}`, props, children)
 )`${styles}`
 
 Heading.propTypes = {

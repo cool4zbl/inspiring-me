@@ -7,11 +7,10 @@ import { BrowserRouter } from 'react-router-dom'
 import { basename } from 'config'
 import App from 'components/App'
 
-const renderApp = () => (
+const renderApp = () =>
   <BrowserRouter basename={basename}>
     <App />
   </BrowserRouter>
-)
 
 const root = document.getElementById('app')
 render(renderApp(), root)

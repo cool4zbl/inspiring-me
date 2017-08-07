@@ -8,15 +8,15 @@ import { SingleDatePicker } from 'react-dates'
 import 'react-dates/lib/css/_datepicker.css'
 import './index.css'
 
-function isSameDay (a, b) {
+function isSameDay(a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
 
-  return a.date() === b.date() &&
-    a.month() === b.month() &&
-    a.year() == b.year()
+  return (
+    a.date() === b.date() && a.month() === b.month() && a.year() == b.year()
+  )
 }
 
-function isBeforeDay (a, b) {
+function isBeforeDay(a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
   const aYear = a.year()
   const aMonth = a.month()
@@ -32,23 +32,22 @@ function isBeforeDay (a, b) {
   return aYear < bYear
 }
 
-function isSameOrAfter (a, b) {
+function isSameOrAfter(a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
   return !isBeforeDay(a, b)
 }
 
-function isAfterDay (a, b) {
+function isAfterDay(a, b) {
   if (!moment.isMoment(a) || !moment.isMoment(b)) return false
   return !isBeforeDay(a, b) && !isSameDay(a, b)
 }
 
-function isSameOrBefore (a, b) {
+function isSameOrBefore(a, b) {
   return !isAfterDay(a, b)
 }
 
-function isInRange (a, b, c) {
-  return isSameOrAfter(a, b)
-    && isSameOrBefore(a, c)
+function isInRange(a, b, c) {
+  return isSameOrAfter(a, b) && isSameOrBefore(a, c)
 }
 
 const propTypes = {
@@ -56,8 +55,7 @@ const propTypes = {
   autoFocus: PropTypes.bool,
   initialDate: momentPropTypes.momentObj,
 
-  handleDateChange: PropTypes.func
-
+  handleDateChange: PropTypes.func,
 }
 
 const defaultProps = {
@@ -90,10 +88,10 @@ const defaultProps = {
   // navigation related props
   navPrev: null,
   navNext: null,
-  onPrevMonthClick () {},
-  onNextMonthClick () {},
+  onPrevMonthClick() {},
+  onNextMonthClick() {},
 
-  handleDateChange () {},
+  handleDateChange() {},
 
   // day presentation and interaction related props
   renderDay: null,
@@ -105,31 +103,31 @@ const defaultProps = {
   isDayHighlighted: () => {},
 
   displayFormat: 'MMM D Y',
-  monthFormat: 'MMMM YYYY'
+  monthFormat: 'MMMM YYYY',
 }
 
 class SingleDatePickerWrapper extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       focused: props.autoFocus,
-      date: props.initialDate
+      date: props.initialDate,
     }
 
     this.onDateChange = this.onDateChange.bind(this)
     this.onFocusChange = this.onFocusChange.bind(this)
   }
 
-  onDateChange (date) {
+  onDateChange(date) {
     this.setState({ date })
     this.props.handleDateChange(date)
   }
 
-  onFocusChange ({ focused }) {
+  onFocusChange({ focused }) {
     this.setState({ focused })
   }
 
-  render () {
+  render() {
     const { focused, date } = this.state
 
     // autoFocus and initialDate are helper props for the example wrapper but are not
@@ -137,13 +135,13 @@ class SingleDatePickerWrapper extends React.Component {
     const props = omit(this.props, [
       'autoFocus',
       'initialDate',
-      'handleDateChange'
+      'handleDateChange',
     ])
 
     return (
       <SingleDatePicker
         {...props}
-        id='date_input'
+        id="date_input"
         daySize={50}
         date={date}
         focused={focused}

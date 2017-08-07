@@ -1,10 +1,8 @@
 import React from 'react'
-import moment from 'moment'
-
-import styled from 'styled-components'
-import { prop } from 'styled-tools'
-import { font, palette, size } from 'styled-theme'
+import styled, { keyframes } from 'styled-components'
+import { font, palette } from 'styled-theme'
 import {
+  Icon,
   PageTemplate,
   Header,
   Footer,
@@ -14,82 +12,60 @@ import {
   Utils,
   DaysBadge,
   QuoteWrapper,
-  Quotes,
 } from 'components'
-import loading from '../../loading.gif'
+import LOADING from '../../loading.gif'
 
 const HideImg = styled.img`display: none;`
+
+const heartbeat = keyframes`
+  from {
+  transform: scale(.5);
+  }
+  23%, 77% {
+  transform: scale(.8);
+  }
+54% {
+  transform: scale(1.2);
+  }
+  to {
+  transform: scale(.5);
+  }
+`
+
+const IconHeart = styled(Icon)`
+  position: absolute;
+  right: 1em; top: .6em;
+  z-index: 1002;
+  margin-left: .5em;
+  vertical-align: middle;
+  animation: ${heartbeat} 1.5s linear infinite;
+`
 
 const Wrapper = styled(Block)`
   display: flex;
   flex-flow: column wrap;
-  height: 80vh;
+  height: 86vh;
   justify-content: center;
   align-items: center;
 `
-
-// Move SDP to the center header
-const DatePickerWrapper = styled.div`
-  z-index: 1012;
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  background-color: ${palette('danger', 1)};
-`
-
-const BEGIN_DATE = moment('2017-03-12')
 
 export default class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       date: new Date(),
-      bgImgUrl: loading,
+      bgImgUrl: LOADING,
       hideBadge: false,
       openQuote: false,
       loadingImgUrl: '',
       quote: {},
-      days: 0,
     }
     this.shouldTransparent = null
-    this.handleDateChange = this.handleDateChange.bind(this)
-  }
-
-  handleDateChange(pickDate) {
-    const { date, days } = this.state
-    if (!moment.isMoment(pickDate)) {
-      return
-    }
-    // FIXME: fix warning
-    const nDays = this.diff(pickDate, BEGIN_DATE)
-    if (nDays === days) {
-      return
-    }
-    this.setState(
-      {
-        date: pickDate,
-      },
-      () => {
-        this.setNewQuote()
-        this.setNewBg()
-      }
-    )
-  }
-
-  computeTimeFromX(a, b) {
-    if (!moment.isMoment(a) || !moment.isMoment(b)) {
-      return
-    }
-    return a.from(b, true)
-  }
-
-  diff(b, a) {
-    if (!moment.isMoment(a) || !moment.isMoment(b)) {
-      return
-    }
-    return b.diff(a, 'days')
+    this.handleImgLoaded = this.handleImgLoaded.bind(this)
+    this.handleWrapperClick = this.handleWrapperClick.bind(this)
+    this.handleIconClick = this.handleIconClick.bind(this)
+    this.handleDaysBadgeClick = this.handleDaysBadgeClick.bind(this)
+    this.handleQuoteWrapperClick = this.handleQuoteWrapperClick.bind(this)
   }
 
   componentWillMount() {
@@ -99,14 +75,24 @@ export default class HomePage extends React.Component {
     }
 
     this.setNewBg()
-    const days = this.diff(moment(), BEGIN_DATE)
-    this.setState({
-      days,
-    })
   }
 
   componentDidMount() {
     this.setNewQuote()
+  }
+
+  handleIconClick(e) {
+    e.stopPropagation()
+    e.preventDefault()
+    this.setState(
+      {
+        bgImgUrl: LOADING,
+      },
+      () => {
+        this.setNewBg()
+        this.setNewQuote()
+      }
+    )
   }
 
   handleImgLoaded() {
@@ -120,11 +106,10 @@ export default class HomePage extends React.Component {
     let bgImgUrl
     ;(async function getBg(self) {
       bgImgUrl = await Utils.fetchImg()
-      console.log('bgImgUrl', bgImgUrl)
       await self.setState(
         {
           loadingImgUrl: bgImgUrl,
-          bgImgUrl: loading,
+          bgImgUrl: LOADING,
         },
         () => {
           // release the object URL since it's no longer needed once the image has been loaded.
@@ -136,38 +121,14 @@ export default class HomePage extends React.Component {
   }
 
   setNewQuote() {
-    // const { date, days } = this.state
-    // let whichDay = moment(date).format('MD')
-    // let quote
-    // quote = {
-    //   quote: Quotes[days],
-    // }
-    // // hack
-    // if (whichDay == '712') {
-    //   quote = { ...quote, author: '——— 仙人掌 🌵' }
-    // }
-    // quote && this.setState({ quote })
-    // return
-
     return fetch(
       'https://random-quote-generator.herokuapp.com/api/quotes/random'
     )
       .then(r => r.json())
       .then(quote => this.setState({ quote }))
       .catch(err => {
-        console.log('err', e)
+        console.log('err', err)
       })
-  }
-
-  diffDays() {
-    const { date, days } = this.state
-    const _days = this.diff(date, BEGIN_DATE)
-    if (_days !== days) {
-      this.setState({
-        days: _days,
-      })
-    }
-    return days
   }
 
   handleDaysBadgeClick() {
@@ -203,18 +164,19 @@ export default class HomePage extends React.Component {
     } = this.state
     return (
       <PageTemplate header={<Header />} footer={<Footer />} bgImgUrl={bgImgUrl}>
-        <HideImg src={loadingImgUrl} onLoad={this.handleImgLoaded.bind(this)} />
-        <Wrapper onClick={this.handleWrapperClick.bind(this)}>
+        <HideImg src={loadingImgUrl} onLoad={this.handleImgLoaded} />
+        <Wrapper onClick={this.handleWrapperClick}>
+          <IconHeart icon="heart" onClick={this.handleIconClick} />
           <DaysBadge
             hide={hideBadge}
             flex={3}
             time={date}
-            onClick={this.handleDaysBadgeClick.bind(this)}
+            onClick={this.handleDaysBadgeClick}
           />
           <QuoteWrapper
-            flex={2}
+            flex={3}
             quote={quote}
-            onClick={this.handleQuoteWrapperClick.bind(this)}
+            onClick={this.handleQuoteWrapperClick}
             className={openQuote ? 'opened' : ''}
           />
         </Wrapper>

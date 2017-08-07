@@ -3,9 +3,5 @@ import { storiesOf } from '@storybook/react'
 import { Footer } from 'components'
 
 storiesOf('Footer', module)
-  .add('default', () => (
-    <Footer />
-  ))
-  .add('reverse', () => (
-    <Footer reverse />
-  ))
+  .add('default', () => <Footer />)
+  .add('reverse', () => <Footer reverse />)
