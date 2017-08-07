@@ -2,7 +2,7 @@
 Just a daily random inspirational quote page giving you energy.
 Simply but very capable. 💪🏼
 
-### [DEMO](http://zhangbinliu.me/2017-07-12-to-myhz/)
+### [DEMO](http://zhangbinliu.me/inspiring-me/#/)
 
 ### Preview
 <img src="screenshot.png" height="500" align="center"/>
