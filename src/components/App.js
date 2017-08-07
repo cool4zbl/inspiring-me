@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, HashRouter } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 import { normalize } from 'polished'
 
@@ -24,11 +24,11 @@ injectGlobal`
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Switch>
+      <HashRouter>
         <Route path="/" component={HomePage} exact />
         <Route path="/sharing" component={SharingPage} exact />
         <Route component={NotFoundPage} />
-      </Switch>
+      </HashRouter>
     </ThemeProvider>
   )
 }
