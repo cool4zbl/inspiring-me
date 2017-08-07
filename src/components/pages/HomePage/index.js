@@ -94,7 +94,7 @@ export default class HomePage extends React.Component {
 
   componentWillMount() {
     if (!Utils.mediaQuery()) {
-      location.href = '/sharing'
+      location.hash = 'sharing'
       return
     }
 

@@ -24,11 +24,11 @@ injectGlobal`
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <HashRouter>
+      <Switch>
         <Route path="/" component={HomePage} exact />
-        <Route path="/sharing" component={SharingPage} exact />
+        <Route path="/#sharing" component={SharingPage} exact />
         <Route component={NotFoundPage} />
-      </HashRouter>
+      </Switch>
     </ThemeProvider>
   )
 }
