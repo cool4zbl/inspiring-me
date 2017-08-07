@@ -45,7 +45,7 @@ export default class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      date: moment(),
+      date: new Date(),
       bgImgUrl: loading,
       hideBadge: false,
       openQuote: false,
@@ -136,9 +136,9 @@ export default class HomePage extends React.Component {
   }
 
   setNewQuote() {
-    const { date, days } = this.state
-    let whichDay = moment(date).format('MD')
-    let quote
+    // const { date, days } = this.state
+    // let whichDay = moment(date).format('MD')
+    // let quote
     // quote = {
     //   quote: Quotes[days],
     // }
@@ -208,7 +208,7 @@ export default class HomePage extends React.Component {
           <DaysBadge
             hide={hideBadge}
             flex={3}
-            days={this.diffDays()}
+            time={date}
             onClick={this.handleDaysBadgeClick.bind(this)}
           />
           <QuoteWrapper
