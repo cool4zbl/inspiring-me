@@ -6,7 +6,7 @@ import { font, palette, size } from 'styled-theme'
 import { Block } from 'components'
 
 const DaysWrapper = styled.div`
-  max-width: 100px;
+  max-width: 200px;
   max-width: max-content;
   flex: ${prop('flex', 3)};
   display: flex;

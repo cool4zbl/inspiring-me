@@ -84,6 +84,10 @@ export default class HomePage extends React.Component {
   handleIconClick(e) {
     e.stopPropagation()
     e.preventDefault()
+    const { bgImgUrl } = this.state
+    if (bgImgUrl === LOADING) {
+      return
+    }
     this.setState(
       {
         bgImgUrl: LOADING,
