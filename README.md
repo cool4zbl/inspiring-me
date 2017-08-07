@@ -7,6 +7,8 @@ Simply but very capable. 💪🏼
 ### Preview
 <img src="screenshot.png" height="500" align="center"/>
 
+<img src="inspiring_gif.gif" height="500" align="center"/>
+
 
 ## Motivation
 Everyone needs some inspirations in his or her life.
