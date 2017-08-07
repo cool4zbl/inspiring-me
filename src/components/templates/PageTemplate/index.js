@@ -24,7 +24,7 @@ const Header = styled.header`
   z-index: 999;
 `
 
-const Content = styled.section.attrs({})`
+const Content = styled.section`
   width: 100%;
   min-height: 70vh;
   box-sizing: border-box;
@@ -32,9 +32,8 @@ const Content = styled.section.attrs({})`
   padding: 0;
   max-width: ${size('maxMWidth')};
   background-color: ${palette('white', 1)};
-  /* more gorgeous pics using w/h proportion */
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-image: ${props => `url(${props.bgImgUrl})`};

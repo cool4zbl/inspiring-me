@@ -28,7 +28,6 @@ const App = () => {
         <div>
           <Route path="/" component={HomePage} exact />
           <Route path="/sharing" component={SharingPage} exact />
-          <Route component={NotFoundPage} />
         </div>
       </ThemeProvider>
     </HashRouter>

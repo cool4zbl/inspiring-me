@@ -119,7 +119,8 @@ export default class HomePage extends React.Component {
   setNewBg() {
     let bgImgUrl
     ;(async function getBg(self) {
-      bgImgUrl = await Utils.genRandomBg()
+      bgImgUrl = await Utils.fetchImg()
+      console.log('bgImgUrl', bgImgUrl)
       await self.setState(
         {
           loadingImgUrl: bgImgUrl,
@@ -138,19 +139,24 @@ export default class HomePage extends React.Component {
     const { date, days } = this.state
     let whichDay = moment(date).format('MD')
     let quote
-    quote = {
-      quote: Quotes[days],
-    }
-    // hack
-    if (whichDay == '712') {
-      quote = { ...quote, author: '——— 仙人掌 🌵' }
-    }
-    quote && this.setState({ quote })
-    return
-    // return fetch('https://random-quote-generator.herokuapp.com/api/quotes/random')
-    //   .then(r => r.json())
-    //   .then( quote => this.setState({ quote }))
-    //   .catch(err => { console.log('err', e) })
+    // quote = {
+    //   quote: Quotes[days],
+    // }
+    // // hack
+    // if (whichDay == '712') {
+    //   quote = { ...quote, author: '——— 仙人掌 🌵' }
+    // }
+    // quote && this.setState({ quote })
+    // return
+
+    return fetch(
+      'https://random-quote-generator.herokuapp.com/api/quotes/random'
+    )
+      .then(r => r.json())
+      .then(quote => this.setState({ quote }))
+      .catch(err => {
+        console.log('err', e)
+      })
   }
 
   diffDays() {
@@ -198,9 +204,6 @@ export default class HomePage extends React.Component {
     return (
       <PageTemplate header={<Header />} footer={<Footer />} bgImgUrl={bgImgUrl}>
         <HideImg src={loadingImgUrl} onLoad={this.handleImgLoaded.bind(this)} />
-        <DatePickerWrapper className={`DatePicker`}>
-          <SingleDatePickerWrapper handleDateChange={this.handleDateChange} />
-        </DatePickerWrapper>
         <Wrapper onClick={this.handleWrapperClick.bind(this)}>
           <DaysBadge
             hide={hideBadge}
