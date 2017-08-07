@@ -14,6 +14,9 @@ Simply but very capable. 💪🏼
 Everyone needs some inspirations in his or her life.
 If you feel depressed or life sucks you, just **Inspiring Yourself**.
 
+## Tech Stack
+`React` + `styled-components` + `webpack`
+Base on [100days](https://github.com/cool4zbl/100days)
 
 ## Credit
 - [Unsplash API](https://source.unsplash.com/)
