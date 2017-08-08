@@ -33,7 +33,7 @@ const heartbeat = keyframes`
 `
 
 const IconHeart = styled(Icon)`
-  position: absolute;
+  position: fixed;
   right: 1em; top: .6em;
   z-index: 1002;
   margin-left: .5em;

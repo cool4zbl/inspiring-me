@@ -6,8 +6,6 @@ import { font, palette, size } from 'styled-theme'
 import { Block } from 'components'
 
 const DaysWrapper = styled.div`
-  max-width: 200px;
-  max-width: max-content;
   flex: ${prop('flex', 3)};
   display: flex;
   flex-flow: column wrap;
@@ -18,11 +16,15 @@ const DaysWrapper = styled.div`
 `
 
 const InnerWrapper = styled(Block)`
+  max-width: 40vw;
+  overflow: hidden;
+  // max-width: -webkit-min-content;
+  // max-width: min-content;
   display: flex;
   flex-flow: column wrap;
   text-align: center;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   border: 3px solid ${palette('white', 0)};
 `
 
